@@ -29,7 +29,9 @@ export function Screen({
       <div className="flex-1 overflow-auto">
         {withLogo && (
           <div className="m-4">
-            <Logo />
+            <NavLink to="/home">
+              <Logo />
+            </NavLink>
           </div>
         )}
 

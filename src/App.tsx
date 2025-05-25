@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 
 import { PhoneFrame } from "./components/PhoneFrame";
 import { Screen } from "./components/Screen";
@@ -30,6 +30,7 @@ function App() {
           <AnimatePresence>
             <motion.div
               key={location.pathname}
+              className="h-full"
               initial={{ x: 375 }}
               animate={{ x: 0 }}
               exit={{ x: -375 }}
@@ -40,7 +41,7 @@ function App() {
               style={{ position: "absolute", width: "100%" }}
             >
               <Routes location={location}>
-                <Route path="/" element={<HomeScreen />} />
+                <Route path="/" element={<Navigate to="/home" replace />} />
                 <Route path="/home" element={<HomeScreen />} />
                 <Route path="/booking" element={<BookingScreen />} />
                 <Route path="/profile" element={<ProfileScreen />} />
