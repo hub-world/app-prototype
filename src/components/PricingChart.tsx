@@ -24,7 +24,7 @@ export function PricingChart({
 
   return (
     <div className={classNames("flex flex-col justify-between")}>
-      <div className="text-base-content/60 flex justify-between">
+      <div className="text-base-content/60 flex justify-between text-sm">
         <Money amount={maxPrice} />
         <Money amount={minPrice} />
       </div>
@@ -54,7 +54,7 @@ export function PricingChart({
         </div>
       </div>
 
-      <div className="text-base-content/60 flex justify-between">
+      <div className="text-base-content/60 flex justify-between text-sm">
         <span>1 month</span>
         <span>{months}+ months</span>
       </div>

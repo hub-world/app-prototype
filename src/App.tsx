@@ -1,12 +1,17 @@
 import classNames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router";
 
 import { PhoneFrame } from "./components/PhoneFrame";
-import { PricingChart } from "./components/PricingChart";
 import { Screen } from "./components/Screen";
+import { BookingScreen } from "./screens/BookingScreen";
+import { HomeScreen } from "./screens/HomeScreen";
+import { ProfileScreen } from "./screens/ProfileScreen";
 
 function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     document.fonts.ready.then(() => setFontsLoaded(true));
@@ -22,9 +27,26 @@ function App() {
     >
       <PhoneFrame>
         <Screen withLogo withTabs>
-          <div className="m-4">
-            <PricingChart />
-          </div>
+          <AnimatePresence>
+            <motion.div
+              key={location.pathname}
+              initial={{ x: 375 }}
+              animate={{ x: 0 }}
+              exit={{ x: -375 }}
+              transition={{
+                duration: 0.25,
+                ease: [0.2, 0.0, 0.0, 1.0],
+              }}
+              style={{ position: "absolute", width: "100%" }}
+            >
+              <Routes location={location}>
+                <Route path="/" element={<HomeScreen />} />
+                <Route path="/home" element={<HomeScreen />} />
+                <Route path="/booking" element={<BookingScreen />} />
+                <Route path="/profile" element={<ProfileScreen />} />
+              </Routes>
+            </motion.div>
+          </AnimatePresence>
         </Screen>
       </PhoneFrame>
     </div>

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { Calendar1, Home, User } from "lucide-react";
-import { useState } from "react";
+import { NavLink } from "react-router";
 
 import { Logo } from "./Logo";
 
@@ -17,8 +17,6 @@ export function Screen({
   withTabs?: boolean;
   fontsLoaded?: boolean;
 }) {
-  const [activeTab, setActiveTab] = useState("home");
-
   return (
     <div
       className={classNames(
@@ -40,26 +38,26 @@ export function Screen({
 
       {withTabs && (
         <div className="dock dock-lg absolute right-0 bottom-0 left-0">
-          <button
-            className={activeTab === "book" ? "dock-active" : ""}
-            onClick={() => setActiveTab("book")}
+          <NavLink
+            to="/booking"
+            className={({ isActive }) => (isActive ? "dock-active" : "")}
           >
             <Calendar1 />
-          </button>
+          </NavLink>
 
-          <button
-            className={activeTab === "home" ? "dock-active" : ""}
-            onClick={() => setActiveTab("home")}
+          <NavLink
+            to="/home"
+            className={({ isActive }) => (isActive ? "dock-active" : "")}
           >
             <Home />
-          </button>
+          </NavLink>
 
-          <button
-            className={activeTab === "profile" ? "dock-active" : ""}
-            onClick={() => setActiveTab("profile")}
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? "dock-active" : "")}
           >
             <User />
-          </button>
+          </NavLink>
         </div>
       )}
     </div>
