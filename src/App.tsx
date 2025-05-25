@@ -26,19 +26,18 @@ function App() {
       )}
     >
       <PhoneFrame>
-        <Screen withLogo withTabs>
+        <Screen withTabs>
           <AnimatePresence>
             <motion.div
               key={location.pathname}
-              className="h-full"
-              initial={{ x: 375 }}
+              className="h-full w-full absolute inset-0"
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: -375 }}
+              exit={{ x: "-100%" }}
               transition={{
                 duration: 0.25,
                 ease: [0.2, 0.0, 0.0, 1.0],
               }}
-              style={{ position: "absolute", width: "100%" }}
             >
               <Routes location={location}>
                 <Route path="/" element={<Navigate to="/home" replace />} />

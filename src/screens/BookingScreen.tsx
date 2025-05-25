@@ -1,20 +1,29 @@
+import { Logo } from "~/components/Logo";
+
 export function BookingScreen() {
   return (
-    <div className="p-4 bg-base-200 h-full flex flex-col gap-4">
-      <div className="p-4 bg-base-100 rounded-2xl shadow-lg flex justify-between">
-        <div className="text-sm text-base-content/50">Where</div>
-        <div className="text-sm">Flexible</div>
-      </div>
+    <div className="p-4 bg-base-200 h-full">
+      <Logo className="mb-4" />
 
-      <div className="p-4 bg-base-100 rounded-2xl shadow-lg flex justify-between">
-        <div className="text-sm text-base-content/50">When</div>
-        <div className="text-sm">Add dates</div>
+      <div className="flex flex-col gap-4">
+        <SectionCard title="Where" value="Flexible" />
+        <SectionCard title="When" value="Add dates" />
+        <SectionCard title="Who" value="Add guests" />
       </div>
+    </div>
+  );
+}
 
-      <div className="p-4 bg-base-100 rounded-2xl shadow-lg flex justify-between">
-        <div className="text-sm text-base-content/50">Who</div>
-        <div className="text-sm">Add guests</div>
-      </div>
+type SectionCardProps = {
+  title: string;
+  value: string;
+};
+
+function SectionCard({ title, value }: SectionCardProps) {
+  return (
+    <div className="p-4 bg-base-100 rounded-2xl shadow-lg flex justify-between">
+      <div className="text-sm text-base-content/50">{title}</div>
+      <div className="text-sm">{value}</div>
     </div>
   );
 }
