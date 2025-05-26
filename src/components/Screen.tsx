@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import type { LucideIcon } from "lucide-react";
-import { Calendar1, Home, User } from "lucide-react";
+import { Calendar1Icon, HomeIcon, UserIcon } from "lucide-react";
 import { NavLink } from "react-router";
 
 type ScreenProps = {
@@ -12,13 +12,13 @@ type ScreenProps = {
 export function Screen({ children, className, withTabs = false }: ScreenProps) {
   return (
     <div className={classNames("flex h-full w-full flex-col", className)}>
-      <div className="flex-1 overflow-hidden relative">{children}</div>
+      <div className="flex-1 overflow-auto relative">{children}</div>
 
       {withTabs && (
         <div className="dock dock-lg static">
-          <Tab to="/booking" icon={Calendar1} />
-          <Tab to="/home" icon={Home} />
-          <Tab to="/profile" icon={User} />
+          <Tab to="/booking" icon={Calendar1Icon} />
+          <Tab to="/home" icon={HomeIcon} />
+          <Tab to="/profile" icon={UserIcon} />
         </div>
       )}
     </div>

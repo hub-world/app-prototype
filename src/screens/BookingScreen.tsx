@@ -1,4 +1,5 @@
 import { Logo } from "~/components/Logo";
+import { PricingChart } from "~/components/PricingChart";
 
 export function BookingScreen() {
   return (
@@ -9,6 +10,10 @@ export function BookingScreen() {
         <SectionCard title="Where" value="Flexible" />
         <SectionCard title="When" value="Add dates" />
         <SectionCard title="Who" value="Add guests" />
+
+        <div className="bg-base-100 rounded-2xl shadow-lg p-4">
+          <PricingChart />
+        </div>
       </div>
     </div>
   );

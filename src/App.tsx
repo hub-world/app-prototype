@@ -7,6 +7,7 @@ import { PhoneFrame } from "./components/PhoneFrame";
 import { Screen } from "./components/Screen";
 import { BookingScreen } from "./screens/BookingScreen";
 import { HomeScreen } from "./screens/HomeScreen";
+import { ContractScreen } from "./screens/HomeScreen/ContractScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/home" element={<HomeScreen />} />
                 <Route path="/booking" element={<BookingScreen />} />
                 <Route path="/profile" element={<ProfileScreen />} />
+                <Route path="/contract" element={<ContractScreen />} />
               </Routes>
             </motion.div>
           </AnimatePresence>
