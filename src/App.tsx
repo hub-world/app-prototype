@@ -21,7 +21,7 @@ function App() {
   return (
     <div
       className={classNames(
-        "grid h-screen w-screen place-items-center font-inter",
+        "grid h-dvh w-dvw place-items-center font-inter",
         "transition-opacity duration-300",
         fontsLoaded ? "visible opacity-100" : "invisible opacity-0",
       )}
