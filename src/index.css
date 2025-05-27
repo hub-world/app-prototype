@@ -4,6 +4,7 @@
 
 @theme {
   --font-inter: "Inter", sans-serif;
+  --breakpoint-xs: 30rem;
 }
 
 @plugin "daisyui" {
@@ -25,35 +26,35 @@
   --safe-right: 0px;
 }
 
-.p-safe {
+@utility p-safe {
   padding-top: var(--safe-top);
   padding-right: var(--safe-right);
   padding-bottom: var(--safe-bottom);
   padding-left: var(--safe-left);
 }
 
-.pt-safe {
+@utility pt-safe {
   padding-top: var(--safe-top);
 }
 
-.pb-safe {
+@utility pb-safe {
   padding-bottom: var(--safe-bottom);
 }
 
-.pl-safe {
+@utility pl-safe {
   padding-left: var(--safe-left);
 }
 
-.pr-safe {
+@utility pr-safe {
   padding-right: var(--safe-right);
 }
 
-.px-safe {
+@utility px-safe {
   padding-left: var(--safe-left);
   padding-right: var(--safe-right);
 }
 
-.py-safe {
+@utility py-safe {
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
 }

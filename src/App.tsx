@@ -21,7 +21,7 @@ function App() {
   return (
     <div
       className={classNames(
-        "font-inter grid h-screen w-screen place-items-center",
+        "grid h-screen w-screen place-items-center font-inter",
         "transition-opacity duration-300",
         fontsLoaded ? "visible opacity-100" : "invisible opacity-0",
       )}
@@ -31,7 +31,7 @@ function App() {
           <AnimatePresence>
             <motion.div
               key={location.pathname}
-              className="h-full w-full absolute inset-0"
+              className="absolute inset-0 h-full w-full"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
