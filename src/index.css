@@ -8,9 +8,8 @@
 }
 
 @plugin "daisyui" {
-  themes:
-    light --default,
-    dark --prefersdark;
+  themes: light --default;
+  /* dark --prefersdark; */
 }
 
 @plugin "daisyui/theme" {
