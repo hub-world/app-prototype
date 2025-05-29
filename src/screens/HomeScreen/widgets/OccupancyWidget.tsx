@@ -55,7 +55,7 @@ export function OccupancyWidget({
             <h3 className="mb-2 font-semibold">Popular times</h3>
             <OccupancyGraph />
           </div>
-          <div className="card bg-info/60">
+          <div className="card bg-info/20">
             <div className="card-body p-4">
               <h2 className="card-title">Card title!</h2>
               <p>

@@ -9,7 +9,6 @@
 
 @plugin "daisyui" {
   themes: light --default;
-  /* dark --prefersdark; */
 }
 
 @plugin "daisyui/theme" {
@@ -17,6 +16,7 @@
   default: true;
   --color-primary: #27548a;
   --color-secondary: #dda852;
+  --color-primary-content: #f0f4f8;
   --radius-selector: 1rem;
   --radius-field: 0.5rem;
   --radius-box: 1rem;
