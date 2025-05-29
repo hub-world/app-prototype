@@ -31,8 +31,8 @@ export function MoodWidget({ className }: MoodWidgetProps) {
   const [selectedMood, setSelectedMood] = useState<Mood>("focus");
 
   return (
-    <BaseWidget className={classNames("px-1 py-2", className)}>
-      <div className="flex flex-col justify-between h-full">
+    <BaseWidget className={classNames("row-span-2 px-1 py-2", className)}>
+      <div className="flex h-full flex-col justify-between">
         {MOODS.map(({ id, label, icon: Icon }) => (
           <MoodButton
             key={id}
@@ -58,12 +58,12 @@ function MoodButton({ label, icon: Icon, selected, onClick }: MoodButtonProps) {
   return (
     <div
       className={classNames(
-        "flex gap-3 items-center bg-base-300 rounded-md px-2 py-1.5 cursor-pointer transition-colors",
-        selected && "text-primary bg-primary/10",
+        "flex cursor-pointer items-center gap-3 rounded-md bg-base-300 px-2 py-1.5 transition-colors",
+        selected && "bg-primary/10 text-primary",
       )}
       onClick={onClick}
     >
-      <Icon className="w-4 h-4" /> <span className="text-sm">{label}</span>
+      <Icon className="h-4 w-4" /> <span className="text-sm">{label}</span>
     </div>
   );
 }

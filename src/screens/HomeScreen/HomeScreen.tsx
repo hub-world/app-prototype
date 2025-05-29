@@ -22,6 +22,7 @@ import { AmenityWidget } from "./widgets/AmenityWidget";
 import { BaseWidget } from "./widgets/BaseWidget";
 import { CleaningWidget } from "./widgets/CleaningWidget";
 import { MoodWidget } from "./widgets/MoodWidget";
+import { WelcomeWidget } from "./widgets/WelcomeWidget";
 
 export function HomeScreen() {
   return (
@@ -59,22 +60,21 @@ export function HomeScreen() {
         <div className="mt-4 grid grid-cols-3 gap-3">
           <AmenityWidget level="low" name="Gym" icon={DumbbellIcon} />
           <AmenityWidget level="mid" name="Spa" icon={LeafIcon} />
-          <MoodWidget className="row-span-2" />
+          <MoodWidget />
+          <CleaningWidget />
           <AmenityWidget
             level="high"
             name="Coworking"
             icon={LayoutPanelTopIcon}
           />
-          <CleaningWidget />
-          <DummyWidget title="7" className="aspect-square" />
-          <DummyWidget title="8" className="aspect-square" />
+          <WelcomeWidget />
           <DummyWidget title="9" className="aspect-square" />
         </div>
 
         <div className="mt-6 flex flex-col gap-2">
-          <LinkButton title="Location" icon={MapPinIcon} />
+          <LinkButton title="Find here" icon={MapPinIcon} />
           <NavLink to="/contract">
-            <LinkButton title="Contract" icon={ReceiptTextIcon} />
+            <LinkButton title="My contract" icon={ReceiptTextIcon} />
           </NavLink>
           <LinkButton title="Good to know" icon={InfoIcon} />
         </div>
