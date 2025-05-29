@@ -1,10 +1,13 @@
 import classNames from "classnames";
 import {
   CastIcon,
+  ChartNoAxesCombinedIcon,
   ChevronRightIcon,
   CircleDotIcon,
   DumbbellIcon,
+  ImagesIcon,
   InfoIcon,
+  KeyRoundIcon,
   LayoutPanelTopIcon,
   LeafIcon,
   LockIcon,
@@ -20,9 +23,9 @@ import { NavLink } from "react-router";
 import blueprint from "~/assets/blueprint.jpg";
 
 import { AmenityWidget } from "./widgets/AmenityWidget";
-import { BaseWidget } from "./widgets/BaseWidget";
 import { CleaningWidget } from "./widgets/CleaningWidget";
 import { MoodWidget } from "./widgets/MoodWidget";
+import { ShopWidget } from "./widgets/ShopWidget";
 import { WelcomeWidget } from "./widgets/WelcomeWidget";
 
 export function HomeScreen() {
@@ -60,6 +63,9 @@ export function HomeScreen() {
       <div className="m-4 flex flex-col gap-2">
         <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-[0.98]">
           <div className="card-body">
+            <button className="btn absolute top-2 right-2 btn-circle btn-ghost btn-sm">
+              ✕
+            </button>
             <h2 className="card-title">Your apartment is in high demand!</h2>
             <p>
               Get money back by subleasing your unit for{" "}
@@ -80,32 +86,23 @@ export function HomeScreen() {
             icon={LayoutPanelTopIcon}
           />
           <WelcomeWidget />
-          <DummyWidget title="9" className="aspect-square" />
+          <ShopWidget />
         </div>
 
         <div className="mt-4 flex flex-col gap-2">
           <LinkButton title="Find here" icon={MapPinIcon} />
-          <LinkButton title="Good to know" icon={InfoIcon} />
+          <LinkButton title="Keys" icon={KeyRoundIcon} />
+          <LinkButton title="Gallery" icon={ImagesIcon} />
           <NavLink to="/contract">
             <LinkButton title="My contract" icon={ReceiptTextIcon} />
           </NavLink>
           <LinkButton title="Sublease" icon={ReceiptEuroIcon} />
+          <LinkButton title="Statistics" icon={ChartNoAxesCombinedIcon} />
+          <LinkButton title="Good to know" icon={InfoIcon} />
+          <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
         </div>
       </div>
     </div>
-  );
-}
-
-type DummyWidgetProps = {
-  title: string;
-  className?: string;
-};
-
-function DummyWidget({ title, className }: DummyWidgetProps) {
-  return (
-    <BaseWidget className={classNames("p-3", className)}>
-      <span className="text-sm">{title}</span>
-    </BaseWidget>
   );
 }
 
