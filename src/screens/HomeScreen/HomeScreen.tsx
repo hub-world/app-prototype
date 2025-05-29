@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import {
+  CastIcon,
   ChevronRightIcon,
   CircleDotIcon,
   DumbbellIcon,
@@ -12,15 +13,15 @@ import {
   MapPinIcon,
   MessageCircleQuestionIcon,
   ReceiptTextIcon,
-  SunIcon,
   WifiIcon,
 } from "lucide-react";
 import { NavLink } from "react-router";
 import blueprint from "~/assets/blueprint.jpg";
 
+import { AmenityWidget } from "./widgets/AmenityWidget";
 import { BaseWidget } from "./widgets/BaseWidget";
+import { CleaningWidget } from "./widgets/CleaningWidget";
 import { MoodWidget } from "./widgets/MoodWidget";
-import { OccupancyWidget } from "./widgets/OccupancyWidget";
 
 export function HomeScreen() {
   return (
@@ -28,32 +29,43 @@ export function HomeScreen() {
       <img src={blueprint} alt="Blueprint" className="w-full" />
 
       <div className="mx-8 flex justify-between text-primary">
-        <label className="swap">
-          <input type="checkbox" defaultChecked />
-          <div className="swap-on">
-            <LockIcon />
-          </div>
-          <div className="swap-off">
-            <LockOpenIcon className="fill-red-200 stroke-red-900" />
-          </div>
-        </label>
-        <CircleDotIcon />
-        <SunIcon />
-        <WifiIcon />
-        <MessageCircleQuestionIcon />
+        <QuickAction>
+          <label className="swap">
+            <input type="checkbox" defaultChecked />
+            <div className="swap-on">
+              <LockIcon />
+            </div>
+            <div className="swap-off">
+              <LockOpenIcon className="fill-red-200 stroke-red-900" />
+            </div>
+          </label>
+        </QuickAction>
+
+        <QuickAction>
+          <CircleDotIcon />
+        </QuickAction>
+        <QuickAction>
+          <CastIcon />
+        </QuickAction>
+        <QuickAction>
+          <WifiIcon />
+        </QuickAction>
+        <QuickAction>
+          <MessageCircleQuestionIcon />
+        </QuickAction>
       </div>
 
       <div className="m-4">
         <div className="mt-4 grid grid-cols-3 gap-3">
-          <OccupancyWidget level="low" name="Gym" icon={DumbbellIcon} />
-          <OccupancyWidget level="mid" name="Spa" icon={LeafIcon} />
+          <AmenityWidget level="low" name="Gym" icon={DumbbellIcon} />
+          <AmenityWidget level="mid" name="Spa" icon={LeafIcon} />
           <MoodWidget className="row-span-2" />
-          <OccupancyWidget
+          <AmenityWidget
             level="high"
             name="Coworking"
             icon={LayoutPanelTopIcon}
           />
-          <DummyWidget title="5" className="aspect-square" />
+          <CleaningWidget />
           <DummyWidget title="7" className="aspect-square" />
           <DummyWidget title="8" className="aspect-square" />
           <DummyWidget title="9" className="aspect-square" />
@@ -100,6 +112,24 @@ function LinkButton({ title, icon: Icon, className }: LinkButtonProps) {
         {title}
       </div>
       <ChevronRightIcon />
+    </div>
+  );
+}
+
+type QuickActionProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+function QuickAction({ children, className }: QuickActionProps) {
+  return (
+    <div
+      className={classNames(
+        "cursor-pointer transition-all duration-200 active:scale-[0.85]",
+        className,
+      )}
+    >
+      {children}
     </div>
   );
 }

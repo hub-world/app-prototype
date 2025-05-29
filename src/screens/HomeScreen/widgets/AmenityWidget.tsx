@@ -6,17 +6,13 @@ import { BaseWidget } from "./BaseWidget";
 
 type OccupancyLevel = "low" | "mid" | "high" | "none";
 
-type OccupancyWidgetProps = {
+type AmenityWidgetProps = {
   level: OccupancyLevel;
   name: string;
   icon: LucideIcon;
 };
 
-export function OccupancyWidget({
-  level,
-  name,
-  icon: Icon,
-}: OccupancyWidgetProps) {
+export function AmenityWidget({ level, name, icon: Icon }: AmenityWidgetProps) {
   const modalName = `modal-occupancy-${name}`;
   const openModal = () => {
     const modal = document.getElementById(modalName) as HTMLDialogElement;
