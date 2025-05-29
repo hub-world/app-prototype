@@ -12,6 +12,7 @@ import {
   type LucideIcon,
   MapPinIcon,
   MessageCircleQuestionIcon,
+  ReceiptEuroIcon,
   ReceiptTextIcon,
   WifiIcon,
 } from "lucide-react";
@@ -56,8 +57,19 @@ export function HomeScreen() {
         </QuickAction>
       </div>
 
-      <div className="m-4">
-        <div className="mt-4 grid grid-cols-3 gap-3">
+      <div className="m-4 flex flex-col gap-2">
+        <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-[0.98]">
+          <div className="card-body">
+            <h2 className="card-title">Your apartment is in high demand!</h2>
+            <p>
+              Get money back by subleasing your unit for{" "}
+              <strong>€120 per day</strong> between{" "}
+              <strong>15th to 19th October</strong>.{" "}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-3">
           <AmenityWidget level="low" name="Gym" icon={DumbbellIcon} />
           <AmenityWidget level="mid" name="Spa" icon={LeafIcon} />
           <MoodWidget />
@@ -71,12 +83,13 @@ export function HomeScreen() {
           <DummyWidget title="9" className="aspect-square" />
         </div>
 
-        <div className="mt-6 flex flex-col gap-2">
+        <div className="mt-4 flex flex-col gap-2">
           <LinkButton title="Find here" icon={MapPinIcon} />
+          <LinkButton title="Good to know" icon={InfoIcon} />
           <NavLink to="/contract">
             <LinkButton title="My contract" icon={ReceiptTextIcon} />
           </NavLink>
-          <LinkButton title="Good to know" icon={InfoIcon} />
+          <LinkButton title="Sublease" icon={ReceiptEuroIcon} />
         </div>
       </div>
     </div>
