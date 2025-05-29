@@ -31,7 +31,11 @@ import { WelcomeWidget } from "./widgets/WelcomeWidget";
 export function HomeScreen() {
   return (
     <div>
-      <img src={blueprint} alt="Blueprint" className="w-full" />
+      <img
+        src={blueprint}
+        alt="Blueprint"
+        className="aspect-[1047/736] w-full"
+      />
 
       <div className="mx-8 flex justify-between text-primary">
         <QuickAction>
