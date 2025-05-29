@@ -9,6 +9,7 @@ import { BookingScreen } from "./screens/BookingScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ContractScreen } from "./screens/HomeScreen/ContractScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import SandboxScreen from "./screens/SandboxScreen";
 
 function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/booking" element={<BookingScreen />} />
                 <Route path="/profile" element={<ProfileScreen />} />
                 <Route path="/contract" element={<ContractScreen />} />
+                <Route path="/sandbox" element={<SandboxScreen />} />
               </Routes>
             </motion.div>
           </AnimatePresence>

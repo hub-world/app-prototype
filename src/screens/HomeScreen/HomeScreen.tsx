@@ -4,6 +4,7 @@ import {
   CircleDotIcon,
   DumbbellIcon,
   InfoIcon,
+  LayoutPanelTopIcon,
   LeafIcon,
   LockIcon,
   LockOpenIcon,
@@ -26,7 +27,7 @@ export function HomeScreen() {
     <div>
       <img src={blueprint} alt="Blueprint" className="w-full" />
 
-      <div className="flex justify-between mx-8 text-primary">
+      <div className="mx-8 flex justify-between text-primary">
         <label className="swap">
           <input type="checkbox" defaultChecked />
           <div className="swap-on">
@@ -43,18 +44,22 @@ export function HomeScreen() {
       </div>
 
       <div className="m-4">
-        <div className="grid grid-cols-3 gap-3 mt-4">
+        <div className="mt-4 grid grid-cols-3 gap-3">
           <OccupancyWidget level="low" name="Gym" icon={DumbbellIcon} />
           <OccupancyWidget level="mid" name="Spa" icon={LeafIcon} />
           <MoodWidget className="row-span-2" />
-          <DummyWidget title="4" className="aspect-square" />
+          <OccupancyWidget
+            level="high"
+            name="Coworking"
+            icon={LayoutPanelTopIcon}
+          />
           <DummyWidget title="5" className="aspect-square" />
-          <DummyWidget title="6" className="aspect-square" />
           <DummyWidget title="7" className="aspect-square" />
           <DummyWidget title="8" className="aspect-square" />
+          <DummyWidget title="9" className="aspect-square" />
         </div>
 
-        <div className="flex flex-col gap-2 mt-6">
+        <div className="mt-6 flex flex-col gap-2">
           <LinkButton title="Location" icon={MapPinIcon} />
           <NavLink to="/contract">
             <LinkButton title="Contract" icon={ReceiptTextIcon} />
@@ -88,9 +93,9 @@ type LinkButtonProps = {
 function LinkButton({ title, icon: Icon, className }: LinkButtonProps) {
   return (
     <div
-      className={classNames("flex justify-between items-center p-2", className)}
+      className={classNames("flex items-center justify-between p-2", className)}
     >
-      <div className="text-xl flex gap-2 items-center">
+      <div className="flex items-center gap-2 text-xl">
         <Icon />
         {title}
       </div>

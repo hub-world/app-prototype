@@ -16,6 +16,10 @@
   name: "light";
   default: true;
   --color-primary: #27548a;
+  --color-secondary: #dda852;
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
 }
 
 :root {
