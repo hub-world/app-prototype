@@ -44,7 +44,7 @@ export function AmenityWidget({ level, name, icon: Icon }: AmenityWidgetProps) {
         </div>
       </BaseWidget>
 
-      <dialog id={modalName} className="modal absolute">
+      <dialog id={modalName} className="modal">
         <div className="modal-box flex flex-col gap-4 p-4">
           <h2 className="text-2xl font-bold">{name}</h2>
           <div>
