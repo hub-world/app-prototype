@@ -1,16 +1,16 @@
 import classNames from "classnames";
 
-type OccupancyGraphProps = {
+type OccupancyChartProps = {
   className?: string;
   hours?: number[]; // Percentage of occupancy for each hour
   currentHour?: [number, number]; // Hour and percentage of occupancy for the current hour
 };
 
-export function OccupancyGraph({
+export function OccupancyChart({
   className,
   hours,
   currentHour,
-}: OccupancyGraphProps) {
+}: OccupancyChartProps) {
   hours ??= generateHours();
   currentHour ??= generateCurrentHour();
 

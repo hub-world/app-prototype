@@ -17,7 +17,7 @@ export function BaseWidget({ children, className, ...props }: BaseWidgetProps) {
       className={classNames(
         "rounded-lg bg-base-200 shadow-md select-none",
         clickable &&
-          "cursor-pointer transition-all duration-200 hover:bg-base-200/80 hover:shadow-lg active:scale-[0.98] active:shadow-md",
+          "cursor-pointer transition-all duration-200 hover:bg-base-200/80 hover:shadow-lg active:scale-98 active:shadow-md",
         className,
       )}
       onClick={props.onClick}

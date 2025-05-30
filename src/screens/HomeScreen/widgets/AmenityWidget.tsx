@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import type { LucideIcon } from "lucide-react";
-import { OccupancyGraph } from "~/components/OccupancyGraph";
+import { OccupancyChart } from "~/components/OccupancyChart";
 
 import { BaseWidget } from "./BaseWidget";
 
@@ -49,7 +49,7 @@ export function AmenityWidget({ level, name, icon: Icon }: AmenityWidgetProps) {
           <h2 className="text-2xl font-bold">{name}</h2>
           <div>
             <h3 className="mb-2 font-semibold">Popular times</h3>
-            <OccupancyGraph />
+            <OccupancyChart />
           </div>
           <div className="card bg-info/20">
             <div className="card-body p-4">
@@ -73,10 +73,10 @@ export function AmenityWidget({ level, name, icon: Icon }: AmenityWidgetProps) {
 }
 
 const colors: Record<OccupancyLevel, string> = {
-  low: "bg-green-500",
-  mid: "bg-yellow-400",
-  high: "bg-amber-500",
-  none: "bg-neutral-content",
+  low: "bg-success",
+  mid: "bg-warning",
+  high: "bg-error",
+  none: "bg-base-content/10",
 };
 
 function getBarColor(level: OccupancyLevel, index: number): string {

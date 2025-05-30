@@ -1,6 +1,11 @@
-export function Money({ amount }: { amount: number }) {
+type MoneyProps = {
+  amount: number;
+  className?: string;
+};
+
+export function Money({ amount, className }: MoneyProps) {
   return (
-    <span>
+    <span className={className}>
       {new Intl.NumberFormat("sv-SE", {
         style: "currency",
         currency: "EUR",

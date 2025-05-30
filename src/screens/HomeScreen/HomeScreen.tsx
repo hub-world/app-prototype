@@ -65,7 +65,7 @@ export function HomeScreen() {
       </div>
 
       <div className="m-4 flex flex-col gap-2">
-        <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-[0.98]">
+        <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-98">
           <div className="card-body">
             <button className="btn absolute top-2 right-2 btn-circle btn-ghost btn-sm">
               ✕
@@ -139,7 +139,7 @@ function QuickAction({ children, className }: QuickActionProps) {
   return (
     <div
       className={classNames(
-        "cursor-pointer transition-all duration-200 active:scale-[0.85]",
+        "cursor-pointer transition-all duration-200 active:scale-85",
         className,
       )}
     >
