@@ -73,8 +73,8 @@ export function HomeScreen() {
             <h2 className="card-title">Your apartment is in high demand!</h2>
             <p>
               Get money back by subleasing your unit for{" "}
-              <strong>€120 per day</strong> between{" "}
-              <strong>15th to 19th October</strong>.{" "}
+              <strong>€120 per day</strong> from{" "}
+              <strong>October 15th to 19th</strong>.{" "}
             </p>
           </div>
         </div>

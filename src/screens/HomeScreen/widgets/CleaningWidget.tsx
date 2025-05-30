@@ -1,31 +1,75 @@
 import classNames from "classnames";
-import { addDays } from "date-fns";
+import { addDays, format } from "date-fns";
 import { SparklesIcon } from "lucide-react";
 
 import { BaseWidget } from "./BaseWidget";
 
 export function CleaningWidget() {
-  return (
-    <BaseWidget className="p-2">
-      <div className="mb-1 flex items-center gap-1">
-        <SparklesIcon className="h-4 w-4" /> <span>Cleaning</span>
-      </div>
+  const modalName = "modal-cleaning";
+  const openModal = () => {
+    const modal = document.getElementById(modalName) as HTMLDialogElement;
+    modal.open = true;
+  };
 
-      <div className="grid grid-cols-3">
-        <div className="flex flex-col items-center gap-1.5">
-          <DayCell date={new Date()} current />
-          <span className="h-2 w-2 rounded-full bg-neutral/30" />
+  return (
+    <>
+      <BaseWidget className="p-2" onClick={openModal}>
+        <div className="mb-1 flex items-center gap-1">
+          <SparklesIcon className="h-4 w-4" /> <span>Cleaning</span>
         </div>
-        <div className="flex flex-col items-center gap-1.5">
-          <DayCell date={addDays(new Date(), 1)} />
-          <span className="h-2 w-2 rounded-full bg-neutral/30" />
+
+        <div className="grid grid-cols-3">
+          <div className="flex flex-col items-center gap-1.5">
+            <DayCell date={new Date()} current />
+            <span className="h-2 w-2 rounded-full bg-neutral/30" />
+          </div>
+          <div className="flex flex-col items-center gap-1.5">
+            <DayCell date={addDays(new Date(), 1)} />
+            <span className="h-2 w-2 rounded-full bg-neutral/30" />
+          </div>
+          <div className="flex flex-col items-center gap-1.5">
+            <DayCell date={addDays(new Date(), 2)} />
+            <span className="h-2 w-2 rounded-full bg-primary" />
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-1.5">
-          <DayCell date={addDays(new Date(), 2)} />
-          <span className="h-2 w-2 rounded-full bg-primary" />
+      </BaseWidget>
+
+      <dialog id={modalName} className="modal">
+        <div className="modal-box flex flex-col gap-4 p-4">
+          <h2 className="text-2xl font-semibold">Cleaning Calendar</h2>
+
+          <div className="grid grid-cols-7 gap-2">
+            {Array.from({ length: 7 }, (_, i) => {
+              const date = new Date();
+              // Adjust to start from Monday (1) instead of Sunday (0)
+              const dayOffset = (date.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
+              date.setDate(date.getDate() - dayOffset + i);
+              return (
+                <DayCell
+                  key={i}
+                  date={date}
+                  current={i === (new Date().getDay() + 6) % 7}
+                  active={[1, 6].includes(i)}
+                />
+              );
+            })}
+          </div>
+
+          <div className="rounded-box bg-base-200 p-4">
+            <div>Next light cleaning:</div>
+            <div>
+              <strong>{format(addDays(new Date(), 2), "EEEE")}</strong>{" "}
+              {format(addDays(new Date(), 2), "MMMM d")},{" "}
+              <strong>9:00 - 11:00</strong>
+            </div>
+          </div>
         </div>
-      </div>
-    </BaseWidget>
+
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+    </>
   );
 
   type DayCellProps = {

@@ -56,7 +56,7 @@ export function AmenityWidget({
 
       <dialog id={modalName} className="modal">
         <div className="modal-box flex flex-col gap-4 p-4">
-          <h2 className="text-2xl font-bold">{name}</h2>
+          <h2 className="text-2xl font-semibold">{name}</h2>
           <div>
             <div className="flex items-baseline justify-between">
               <h3 className="mb-2 font-semibold">Popular times</h3>
@@ -67,6 +67,7 @@ export function AmenityWidget({
             </div>
             <OccupancyChart />
           </div>
+
           <div className="card bg-info/20 text-info-content card-sm">
             <div className="card-body">
               <h3 className="card-title">Upgrade your stay</h3>
@@ -111,6 +112,7 @@ export function AmenityWidget({
             </div>
           </div>
         </div>
+
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
         </form>
