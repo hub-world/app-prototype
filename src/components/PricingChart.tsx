@@ -32,19 +32,19 @@ export function PricingChart({
     return `${i + 1} months`;
   };
 
-  const isLabelVisible = (i: number) => {
-    if (i === 0) return true;
-    if (i === months - 1) return true;
-    if (selectedMonth === i) return true;
-    return false;
-  };
-
   return (
-    <div className="pt-12 pb-6">
-      <div
-        className="flex h-full items-end justify-between gap-1"
-        style={{ height }}
-      >
+    <div className="relative flex flex-col">
+      <div className="mt-4 mb-2 flex justify-between text-sm text-base-content/60">
+        <Money
+          amount={calculatePrice(0)}
+          className={classNames(selectedMonth === 0 && "invisible")}
+        />
+        <Money
+          amount={calculatePrice(months - 1)}
+          className={classNames(selectedMonth === months - 1 && "invisible")}
+        />
+      </div>
+      <div className="flex items-end justify-between gap-1" style={{ height }}>
         {Array.from({ length: months }).map((_, i) => (
           <div
             key={i}
@@ -65,65 +65,48 @@ export function PricingChart({
                 ),
               }}
             />
-            {isLabelVisible(i) && (
+            {selectedMonth === i && (
               <div
                 className={classNames(
-                  "absolute bottom-full pb-2 text-sm whitespace-nowrap",
-                  "left-1/2 -translate-x-1/2",
-                  selectedMonth === i ? "text-primary" : "text-base-content/60",
+                  "absolute bottom-full left-1/2 -translate-x-1/2",
+                  "pb-2 text-sm whitespace-nowrap text-primary",
                 )}
               >
-                {selectedMonth === i ? (
-                  <div className="flex flex-col items-center gap-1">
-                    <div
-                      className={classNames(
-                        "text-center",
-                        selectedMonth === 0 && "relative left-6 text-left",
-                        selectedMonth === 1 && "relative left-10 text-left",
-                        selectedMonth === 2 && "relative left-4 text-left",
-                        selectedMonth === months - 1 &&
-                          "relative right-8 text-right",
-                      )}
-                    >
-                      <strong>{monthLabel(i)}</strong> from
-                      <br />
-                      <strong>
-                        <Money amount={calculatePrice(i)} />
-                      </strong>
-                      /month
-                    </div>
-                    {i > 0 && (
-                      <div
-                        className="bg-primary"
-                        style={{
-                          width: 1,
-                          height: i * (height / (months * 2)),
-                        }}
-                      />
+                <div className="flex flex-col items-center gap-1">
+                  <div
+                    className={classNames(
+                      "text-center",
+                      selectedMonth === 0 && "relative left-7 text-left",
+                      selectedMonth === 1 && "relative left-10 text-left",
+                      selectedMonth === 2 && "relative left-4 text-left",
+                      selectedMonth === months - 1 &&
+                        "relative right-8 text-right",
                     )}
+                  >
+                    <strong>{monthLabel(i)}</strong> from
+                    <br />
+                    <strong>
+                      <Money amount={calculatePrice(i)} />
+                    </strong>
+                    /month
                   </div>
-                ) : (
-                  <Money amount={calculatePrice(i)} />
-                )}
-              </div>
-            )}
-            {[0, months - 1].includes(i) && (
-              <div
-                className={classNames(
-                  "absolute -bottom-7 text-sm whitespace-nowrap",
-                  selectedMonth === i ? "text-primary" : "text-base-content/60",
-                  i === 0
-                    ? "left-0"
-                    : i === months - 1
-                      ? "right-0"
-                      : "left-1/2 -translate-x-1/2",
-                )}
-              >
-                {monthLabel(i)}
+                  <div
+                    className="bg-primary"
+                    style={{
+                      width: 1,
+                      height: i * (height / (months * 2)),
+                      display: i === 0 ? "none" : "block",
+                    }}
+                  />
+                </div>
               </div>
             )}
           </div>
         ))}
+      </div>
+      <div className="mt-2 flex justify-between text-sm text-base-content/60">
+        <div>{monthLabel(0)}</div>
+        <div>{monthLabel(months - 1)}</div>
       </div>
     </div>
   );

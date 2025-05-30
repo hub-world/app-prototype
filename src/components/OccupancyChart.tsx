@@ -20,7 +20,7 @@ export function OccupancyChart({
         {[0, ...hours.slice(5, 20), 0].map((percentage, index) => (
           <div key={index} className="relative flex h-full flex-1 items-end">
             <div
-              className="w-full rounded-t-xs bg-info hover:bg-primary/80"
+              className="w-full rounded-t-xs bg-info hover:bg-info/80"
               style={{ height: `${percentage}%` }}
             />
             {index + 5 === currentHour[0] && (
