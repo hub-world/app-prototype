@@ -80,14 +80,28 @@ export function HomeScreen() {
         </div>
 
         <div className="grid grid-cols-3 gap-3">
-          <AmenityWidget level="low" name="Gym" icon={DumbbellIcon} />
-          <AmenityWidget level="mid" name="Spa" icon={LeafIcon} />
+          <AmenityWidget
+            name="Gym"
+            icon={DumbbellIcon}
+            occupancy="low"
+            monthlyPrice={40}
+            dailyPrice={12}
+          />
+          <AmenityWidget
+            name="Spa"
+            icon={LeafIcon}
+            occupancy="mid"
+            monthlyPrice={50}
+            dailyPrice={15}
+          />
           <MoodWidget />
           <CleaningWidget />
           <AmenityWidget
-            level="high"
             name="Coworking"
             icon={LayoutPanelTopIcon}
+            occupancy="high"
+            monthlyPrice={100}
+            dailyPrice={10}
           />
           <WelcomeWidget />
           <ShopWidget />
