@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { addDays, format } from "date-fns";
+import { addDays, format, isSameDay, isToday } from "date-fns";
 import { SparklesIcon } from "lucide-react";
 
 import { BaseWidget } from "./BaseWidget";
@@ -10,6 +10,16 @@ export function CleaningWidget() {
     const modal = document.getElementById(modalName) as HTMLDialogElement;
     modal.open = true;
   };
+
+  const weekDays = Array.from({ length: 7 }, (_, i) => {
+    const date = new Date();
+    // Adjust to start from Monday (1) instead of Sunday (0)
+    const dayOffset = (date.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
+    date.setDate(date.getDate() - dayOffset + i);
+    return date;
+  });
+
+  const nextCleaningDate = addDays(new Date(), 2);
 
   return (
     <>
@@ -39,30 +49,26 @@ export function CleaningWidget() {
           <h2 className="text-2xl font-semibold">Cleaning Calendar</h2>
 
           <div className="grid grid-cols-7 gap-2">
-            {Array.from({ length: 7 }, (_, i) => {
-              const date = new Date();
-              // Adjust to start from Monday (1) instead of Sunday (0)
-              const dayOffset = (date.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
-              date.setDate(date.getDate() - dayOffset + i);
-              return (
-                <DayCell
-                  key={i}
-                  date={date}
-                  current={i === (new Date().getDay() + 6) % 7}
-                  active={[1, 6].includes(i)}
-                />
-              );
-            })}
+            {weekDays.map((date, i) => (
+              <DayCell
+                key={i}
+                date={date}
+                current={isToday(date)}
+                active={isSameDay(date, nextCleaningDate)}
+              />
+            ))}
           </div>
 
           <div className="rounded-box bg-base-200 p-4">
-            <div>Next light cleaning:</div>
+            <div>Next cleaning:</div>
             <div>
-              <strong>{format(addDays(new Date(), 2), "EEEE")}</strong>{" "}
-              {format(addDays(new Date(), 2), "MMMM d")},{" "}
+              <strong>{format(nextCleaningDate, "EEEE")}</strong>{" "}
+              {format(nextCleaningDate, "MMMM d")},{" "}
               <strong>9:00 - 11:00</strong>
             </div>
           </div>
+
+          <button className="btn btn-primary">Schedule cleaning</button>
         </div>
 
         <form method="dialog" className="modal-backdrop">
