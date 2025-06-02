@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router";
@@ -9,50 +8,56 @@ import { BookingScreen } from "./screens/BookingScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ContractScreen } from "./screens/HomeScreen/ContractScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
-import SandboxScreen from "./screens/SandboxScreen";
+import { SandboxScreen } from "./screens/SandboxScreen";
 import { WelcomeScreen } from "./screens/WelcomeScreen";
 
 function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(() => {
+    return document.fonts.check("1em Inter");
+  });
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    document.fonts.ready.then(() => setFontsLoaded(true));
-  }, []);
+    if (!fontsLoaded) {
+      document.fonts.ready.then(() => setFontsLoaded(true));
+    }
+  }, [fontsLoaded]);
 
   return (
-    <div
-      className={classNames(
-        "grid h-dvh w-dvw place-items-center font-inter",
-        "transition-opacity duration-300",
-        fontsLoaded ? "visible opacity-100" : "invisible opacity-0",
-      )}
-    >
+    <div className="grid h-dvh w-dvw place-items-center font-inter">
       <PhoneFrame>
         <Screen withTabs>
-          <AnimatePresence>
-            <motion.div
-              key={location.pathname}
-              className="absolute inset-0 h-full w-full"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{
-                duration: 0.25,
-                ease: [0.2, 0.0, 0.0, 1.0],
-              }}
-            >
-              <Routes location={location}>
-                <Route path="/" element={<Navigate to="/home" replace />} />
-                <Route path="/home" element={<HomeScreen />} />
-                <Route path="/booking" element={<BookingScreen />} />
-                <Route path="/profile" element={<ProfileScreen />} />
-                <Route path="/contract" element={<ContractScreen />} />
-                <Route path="/welcome" element={<WelcomeScreen />} />
-                <Route path="/sandbox" element={<SandboxScreen />} />
-              </Routes>
-            </motion.div>
-          </AnimatePresence>
+          {!fontsLoaded ? (
+            <div className="grid h-full w-full place-items-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+            </div>
+          ) : (
+            <AnimatePresence>
+              <motion.div
+                key={location.pathname}
+                className="absolute inset-0 h-full w-full"
+                initial={isInitialLoad ? { opacity: 0 } : { x: "100%" }}
+                animate={isInitialLoad ? { opacity: 1 } : { x: 0 }}
+                exit={isInitialLoad ? { opacity: 0 } : { x: "-100%" }}
+                onAnimationComplete={() => setIsInitialLoad(false)}
+                transition={{
+                  duration: 0.25,
+                  ease: [0.2, 0.0, 0.0, 1.0],
+                }}
+              >
+                <Routes location={location}>
+                  <Route path="/" element={<Navigate to="/home" replace />} />
+                  <Route path="/home" element={<HomeScreen />} />
+                  <Route path="/booking" element={<BookingScreen />} />
+                  <Route path="/profile" element={<ProfileScreen />} />
+                  <Route path="/contract" element={<ContractScreen />} />
+                  <Route path="/welcome" element={<WelcomeScreen />} />
+                  <Route path="/sandbox" element={<SandboxScreen />} />
+                </Routes>
+              </motion.div>
+            </AnimatePresence>
+          )}
         </Screen>
       </PhoneFrame>
     </div>

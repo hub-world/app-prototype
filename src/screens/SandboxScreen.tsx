@@ -1,6 +1,6 @@
 import { OccupancyChart } from "~/components/OccupancyChart";
 
-export default function SandboxScreen() {
+export function SandboxScreen() {
   return (
     <div className="p-4">
       <OccupancyChart />
