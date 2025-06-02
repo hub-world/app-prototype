@@ -5,10 +5,11 @@ import { Navigate, Route, Routes, useLocation } from "react-router";
 import { PhoneFrame } from "./components/PhoneFrame";
 import { Screen } from "./components/Screen";
 import { BookingScreen } from "./screens/BookingScreen";
+import { ContractScreen } from "./screens/ContractScreen";
 import { HomeScreen } from "./screens/HomeScreen";
-import { ContractScreen } from "./screens/HomeScreen/ContractScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
 import { SandboxScreen } from "./screens/SandboxScreen";
+import { SubleaseScreen } from "./screens/SubleaseScreen";
 import { WelcomeScreen } from "./screens/WelcomeScreen";
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/contract" element={<ContractScreen />} />
                   <Route path="/welcome" element={<WelcomeScreen />} />
+                  <Route path="/sublease" element={<SubleaseScreen />} />
                   <Route path="/sandbox" element={<SandboxScreen />} />
                 </Routes>
               </motion.div>

@@ -19,7 +19,7 @@ import {
   ReceiptTextIcon,
   WifiIcon,
 } from "lucide-react";
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 import blueprint from "~/assets/blueprint.jpg";
 
 import { AmenityWidget } from "./widgets/AmenityWidget";
@@ -65,19 +65,28 @@ export function HomeScreen() {
       </div>
 
       <div className="m-4 flex flex-col gap-2">
-        <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-98">
-          <div className="card-body">
-            <button className="btn absolute top-2 right-2 btn-circle btn-ghost btn-sm">
-              ✕
-            </button>
-            <h2 className="card-title">Your apartment is in high demand!</h2>
-            <p>
-              Get money back by subleasing your unit for{" "}
-              <strong>€120 per day</strong> from{" "}
-              <strong>October 15th to 19th</strong>.{" "}
-            </p>
+        <Link to="/sublease">
+          <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-98">
+            <div className="card-body">
+              <button
+                className="btn absolute top-2 right-2 btn-circle btn-ghost btn-sm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const card = e.currentTarget.closest(".card");
+                  if (card) card.classList.add("hidden");
+                }}
+              >
+                ✕
+              </button>
+              <h2 className="card-title">Your apartment is in high demand!</h2>
+              <p>
+                Get money back by subleasing your unit for{" "}
+                <strong>€120 per day</strong> from{" "}
+                <strong>October 15th to 19th</strong>.{" "}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
 
         <div className="grid grid-cols-3 gap-3">
           <AmenityWidget
@@ -111,10 +120,12 @@ export function HomeScreen() {
           <LinkButton title="Find here" icon={MapPinIcon} />
           <LinkButton title="Keys" icon={KeyRoundIcon} />
           <LinkButton title="Gallery" icon={ImagesIcon} />
-          <NavLink to="/contract">
+          <Link to="/contract">
             <LinkButton title="My contract" icon={ReceiptTextIcon} />
-          </NavLink>
-          <LinkButton title="Sublease" icon={ReceiptEuroIcon} />
+          </Link>
+          <Link to="/sublease">
+            <LinkButton title="Sublease" icon={ReceiptEuroIcon} />
+          </Link>
           <LinkButton title="Statistics" icon={ChartNoAxesCombinedIcon} />
           <LinkButton title="Good to know" icon={InfoIcon} />
           <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
