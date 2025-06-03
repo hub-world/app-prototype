@@ -37,7 +37,7 @@ function App() {
             <AnimatePresence>
               <motion.div
                 key={location.pathname}
-                className="absolute inset-0 h-full w-full"
+                className="absolute inset-0 h-full w-full overflow-auto"
                 initial={isInitialLoad ? { opacity: 0 } : { x: "100%" }}
                 animate={isInitialLoad ? { opacity: 1 } : { x: 0 }}
                 exit={isInitialLoad ? { opacity: 0 } : { x: "-100%" }}

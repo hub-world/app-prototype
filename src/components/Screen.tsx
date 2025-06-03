@@ -12,7 +12,7 @@ type ScreenProps = {
 export function Screen({ children, className, withTabs = false }: ScreenProps) {
   return (
     <div className={classNames("flex h-full w-full flex-col", className)}>
-      <div className="relative flex-1 overflow-auto">{children}</div>
+      <div className="relative flex-1 overflow-hidden">{children}</div>
 
       {withTabs && (
         <div className="dock static dock-lg">
