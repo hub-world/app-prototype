@@ -6,7 +6,7 @@ export function ProfileScreen() {
     <div className="m-4">
       <Logo className="mb-4" />
 
-      <div className="flex flex-col gap-4 m-2 mt-8">
+      <div className="m-2 mt-8 flex flex-col gap-4">
         <ListItem title="Personal Information" />
         <ListItem title="Payment Methods" />
         <ListItem title="Booking History" />
@@ -29,7 +29,7 @@ type ListItemProps = {
 
 function ListItem({ title }: ListItemProps) {
   return (
-    <div className="flex items-center gap-2 hover:ml-4 transition-[margin] cursor-pointer">
+    <div className="flex cursor-pointer items-center gap-2 transition-[margin] hover:ml-4">
       <ChevronRightIcon />
       <span className="text-xl">{title}</span>
     </div>

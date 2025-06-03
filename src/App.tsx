@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router";
 
 import { PhoneFrame } from "./components/PhoneFrame";
 import { Screen } from "./components/Screen";
+import { BookingFormScreen } from "./screens/BookingFormScreen";
 import { BookingScreen } from "./screens/BookingScreen";
 import { ContractScreen } from "./screens/ContractScreen";
 import { HomeScreen } from "./screens/HomeScreen";
@@ -51,6 +52,7 @@ function App() {
                   <Route path="/" element={<Navigate to="/home" replace />} />
                   <Route path="/home" element={<HomeScreen />} />
                   <Route path="/booking" element={<BookingScreen />} />
+                  <Route path="/booking/form" element={<BookingFormScreen />} />
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/contract" element={<ContractScreen />} />
                   <Route path="/welcome" element={<WelcomeScreen />} />

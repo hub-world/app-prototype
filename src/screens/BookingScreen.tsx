@@ -1,34 +1,22 @@
-import { Logo } from "~/components/Logo";
-import { PricingChart } from "~/components/PricingChart";
+import { Link } from "react-router";
+import { StickyLogo } from "~/components/StickyLogo";
 
 export function BookingScreen() {
   return (
-    <div className="p-4 bg-base-200 h-full">
-      <Logo className="mb-4" />
+    <>
+      <StickyLogo />
 
-      <div className="flex flex-col gap-4">
-        <SectionCard title="Where" value="Flexible" />
-        <SectionCard title="When" value="Add dates" />
-        <SectionCard title="Who" value="Add guests" />
-
-        <div className="bg-base-100 rounded-2xl shadow-lg p-4">
-          <PricingChart />
+      <div className="p-4">
+        <div className="mt-[40%] flex flex-col rounded-box border border-base-300 p-6">
+          <Link to="/contract">
+            <button className="btn w-full btn-accent">Modify booking</button>
+          </Link>
+          <div className="divider">or</div>
+          <Link to="/booking/form">
+            <button className="btn w-full btn-primary">New booking</button>
+          </Link>
         </div>
       </div>
-    </div>
-  );
-}
-
-type SectionCardProps = {
-  title: string;
-  value: string;
-};
-
-function SectionCard({ title, value }: SectionCardProps) {
-  return (
-    <div className="p-4 bg-base-100 rounded-2xl shadow-lg flex justify-between">
-      <div className="text-sm text-base-content/50">{title}</div>
-      <div className="text-sm">{value}</div>
-    </div>
+    </>
   );
 }

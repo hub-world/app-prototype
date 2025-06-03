@@ -64,6 +64,7 @@ export function ContractScreen() {
               title="Duration"
               icon={Calendar}
               value="6 months"
+              description="March - August 2025"
             />
             <tr className="border-t-2 border-base-300">
               <td></td>
@@ -122,12 +123,14 @@ type TableApartmentRowProps = {
   title: string;
   icon: LucideIcon;
   value: string;
+  description?: string;
 };
 
 function TableApartmentRow({
   title,
   icon: Icon,
   value,
+  description,
 }: TableApartmentRowProps) {
   return (
     <tr>
@@ -137,8 +140,11 @@ function TableApartmentRow({
           <span>{title}:</span>
           <span className="font-medium">{value}</span>
         </div>
+        {description && (
+          <div className="ml-7 text-xs text-base-content/50">{description}</div>
+        )}
       </td>
-      <td>
+      <td className="align-top">
         <button className="btn w-full btn-ghost btn-sm">Change</button>
       </td>
     </tr>
