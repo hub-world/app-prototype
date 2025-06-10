@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router";
 import blueprint from "~/assets/blueprint.jpg";
+import { serviceSpecs } from "~/config";
 
 import { AmenityWidget } from "./widgets/AmenityWidget";
 import { CleaningWidget } from "./widgets/CleaningWidget";
@@ -90,27 +91,27 @@ export function HomeScreen() {
 
         <div className="grid grid-cols-3 gap-3">
           <AmenityWidget
-            name="Gym"
+            name={serviceSpecs.gym.name}
             icon={DumbbellIcon}
             occupancy="low"
-            monthlyPrice={40}
-            dailyPrice={12}
+            monthlyPrice={serviceSpecs.gym.monthlyPrice}
+            dailyPrice={serviceSpecs.gym.dailyPrice}
           />
           <AmenityWidget
-            name="Spa"
+            name={serviceSpecs.spa.name}
             icon={LeafIcon}
             occupancy="mid"
-            monthlyPrice={50}
-            dailyPrice={15}
+            monthlyPrice={serviceSpecs.spa.monthlyPrice}
+            dailyPrice={serviceSpecs.spa.dailyPrice}
           />
           <MoodWidget />
           <CleaningWidget />
           <AmenityWidget
-            name="Coworking"
+            name={serviceSpecs.coworking.name}
             icon={LayoutPanelTopIcon}
             occupancy="high"
-            monthlyPrice={100}
-            dailyPrice={10}
+            monthlyPrice={serviceSpecs.coworking.monthlyPrice}
+            dailyPrice={serviceSpecs.coworking.dailyPrice}
           />
           <WelcomeWidget />
           <ShopWidget />

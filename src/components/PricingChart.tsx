@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { useState } from "react";
+import { unitSpecs } from "~/config";
 
 import { Money } from "./Money";
 
@@ -13,8 +14,8 @@ type PricingChartProps = {
 export function PricingChart({
   height = 220,
   months = 8,
-  maxPrice = 1100,
-  minPrice = 785,
+  maxPrice = unitSpecs.economy.monthlyRent[1],
+  minPrice = unitSpecs.economy.monthlyRent[0],
 }: PricingChartProps) {
   const [selectedMonth, setSelectedMonth] = useState(0);
 

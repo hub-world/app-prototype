@@ -11,18 +11,10 @@ import {
 import { useState } from "react";
 import { Money } from "~/components/Money";
 import { TopNav } from "~/components/TopNav";
-
-const PRICES = {
-  apartment: 875,
-  services: {
-    gym: 40,
-    spa: 50,
-    coworking: 100,
-  },
-};
+import { type ServiceType, currentBooking, serviceSpecs } from "~/config";
 
 export function ContractScreen() {
-  const [services, setServices] = useState({
+  const [services, setServices] = useState<Record<ServiceType, boolean>>({
     gym: true,
     spa: false,
     coworking: false,
@@ -32,14 +24,14 @@ export function ContractScreen() {
     const servicesTotal = Object.entries(services).reduce(
       (sum, [service, isActive]) =>
         isActive
-          ? sum + PRICES.services[service as keyof typeof PRICES.services]
+          ? sum + serviceSpecs[service as ServiceType].monthlyPrice
           : sum,
       0,
     );
-    return PRICES.apartment + servicesTotal;
+    return currentBooking.monthlyRent + servicesTotal;
   };
 
-  const toggleService = (service: keyof typeof services) => {
+  const toggleService = (service: ServiceType) => {
     setServices((prev) => ({
       ...prev,
       [service]: !prev[service],
@@ -69,7 +61,7 @@ export function ContractScreen() {
             <tr className="border-t-2 border-base-300">
               <td></td>
               <td className="text-right font-bold">
-                <Money amount={PRICES.apartment} />
+                <Money amount={currentBooking.monthlyRent} />
               </td>
               <td></td>
             </tr>
@@ -78,21 +70,21 @@ export function ContractScreen() {
             <TableServiceRow
               title="Gym"
               icon={Dumbbell}
-              price={PRICES.services.gym}
+              price={serviceSpecs.gym.monthlyPrice}
               isActive={services.gym}
               toggleActive={() => toggleService("gym")}
             />
             <TableServiceRow
               title="Spa"
               icon={Waves}
-              price={PRICES.services.spa}
+              price={serviceSpecs.spa.monthlyPrice}
               isActive={services.spa}
               toggleActive={() => toggleService("spa")}
             />
             <TableServiceRow
               title="Coworking"
               icon={Briefcase}
-              price={PRICES.services.coworking}
+              price={serviceSpecs.coworking.monthlyPrice}
               isActive={services.coworking}
               toggleActive={() => toggleService("coworking")}
             />
