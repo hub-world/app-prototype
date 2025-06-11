@@ -35,7 +35,7 @@ export function PricingChart({
 
   return (
     <div className="relative flex flex-col">
-      <div className="mt-4 mb-2 flex justify-between text-sm text-base-content/60">
+      <div className="mt-6 mb-2 flex justify-between text-sm text-base-content/60">
         <Money
           amount={calculatePrice(0)}
           className={classNames(selectedMonth === 0 && "invisible")}
@@ -105,7 +105,7 @@ export function PricingChart({
           </div>
         ))}
       </div>
-      <div className="mt-2 flex justify-between text-sm text-base-content/60">
+      <div className="mt-2 mb-1 flex justify-between text-sm text-base-content/60">
         <div>{monthLabel(0)}</div>
         <div>{monthLabel(months - 1)}</div>
       </div>

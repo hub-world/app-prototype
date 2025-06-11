@@ -85,3 +85,10 @@
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
 }
+
+/* Disable focus rings globally */
+.input:focus,
+.input:focus-visible,
+.input:focus-within {
+  outline: none !important;
+}

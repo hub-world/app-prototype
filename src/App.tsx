@@ -51,8 +51,8 @@ function App() {
                 <Routes location={location}>
                   <Route path="/" element={<Navigate to="/home" replace />} />
                   <Route path="/home" element={<HomeScreen />} />
-                  <Route path="/booking" element={<BookingScreen />} />
-                  <Route path="/booking/form" element={<BookingFormScreen />} />
+                  <Route path="/booking/tbd" element={<BookingScreen />} />
+                  <Route path="/booking" element={<BookingFormScreen />} />
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/contract" element={<ContractScreen />} />
                   <Route path="/welcome" element={<WelcomeScreen />} />

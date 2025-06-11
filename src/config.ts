@@ -3,24 +3,29 @@ export type ApartmentType = "economy" | "premium" | "business" | "first";
 export type Unit = {
   name: string;
   monthlyRent: [number, number];
+  sqm: number;
 };
 
 export const unitSpecs: Record<ApartmentType, Unit> = {
   economy: {
     name: "Economy",
     monthlyRent: [1100, 770],
+    sqm: 20,
   },
   premium: {
     name: "Premium",
     monthlyRent: [1650, 1155],
+    sqm: 30,
   },
   business: {
     name: "Business",
     monthlyRent: [2150, 1505],
+    sqm: 30,
   },
   first: {
     name: "First Class",
     monthlyRent: [2850, 1995],
+    sqm: 40,
   },
 };
 
