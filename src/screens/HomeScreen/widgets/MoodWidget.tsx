@@ -6,7 +6,6 @@ import {
   type LucideIcon,
   MoonIcon,
   SunIcon,
-  SunsetIcon,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -22,9 +21,8 @@ const MOODS: Array<{ id: Mood; label: string; icon: LucideIcon }> = [
   { id: "day", label: "Day", icon: SunIcon },
   { id: "focus", label: "Focus", icon: BookOpenIcon },
   { id: "relax", label: "Relax", icon: HeartIcon },
-  { id: "evening", label: "Evening", icon: SunsetIcon },
   { id: "night", label: "Night", icon: MoonIcon },
-  { id: "custom", label: "Custom", icon: EllipsisIcon },
+  { id: "custom", label: "More", icon: EllipsisIcon },
 ];
 
 export function MoodWidget({ className }: MoodWidgetProps) {
@@ -51,7 +49,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
   return (
     <>
       <BaseWidget className={classNames("row-span-2 px-1 py-2", className)}>
-        <div className="flex h-full flex-col justify-between">
+        <div className="flex h-full flex-col justify-between gap-1">
           {MOODS.map(({ id, label, icon: Icon }) => (
             <MoodButton
               key={id}
@@ -79,7 +77,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
                 style={{ fontWeight: selectedMood === id ? 500 : 400 }}
                 onClick={() => handleMoodClick(id)}
               >
-                {label}
+                {id === "custom" ? "Custom" : label}
               </button>
             ))}
           </div>
@@ -197,7 +195,7 @@ function MoodButton({ label, icon: Icon, selected, onClick }: MoodButtonProps) {
   return (
     <div
       className={classNames(
-        "flex cursor-pointer items-center gap-3 rounded-md bg-base-300 px-2 py-1.5 transition-colors",
+        "flex cursor-pointer items-center gap-3 rounded-md bg-base-300 px-2 py-2.5 transition-colors",
         selected && "bg-primary/10 text-primary",
       )}
       onClick={onClick}

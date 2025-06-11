@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 type MoneyProps = {
   amount: number;
   className?: string;
@@ -5,7 +7,7 @@ type MoneyProps = {
 
 export function Money({ amount, className }: MoneyProps) {
   return (
-    <span className={className}>
+    <span className={classNames("whitespace-nowrap", className)}>
       {new Intl.NumberFormat("sv-SE", {
         style: "currency",
         currency: "EUR",

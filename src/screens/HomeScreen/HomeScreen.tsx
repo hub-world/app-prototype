@@ -1,17 +1,17 @@
 import classNames from "classnames";
 import {
+  BlindsIcon,
   CastIcon,
   ChartNoAxesCombinedIcon,
   ChevronRightIcon,
-  CircleDotIcon,
+  DoorClosedIcon,
+  DoorOpenIcon,
   DumbbellIcon,
   ImagesIcon,
   InfoIcon,
   KeyRoundIcon,
   LayoutPanelTopIcon,
   LeafIcon,
-  LockIcon,
-  LockOpenIcon,
   type LucideIcon,
   MapPinIcon,
   MessageCircleQuestionIcon,
@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router";
 import blueprint from "~/assets/blueprint.jpg";
+import { Money } from "~/components/Money";
 import { serviceSpecs } from "~/config";
 
 import { AmenityWidget } from "./widgets/AmenityWidget";
@@ -43,16 +44,16 @@ export function HomeScreen() {
           <label className="swap">
             <input type="checkbox" defaultChecked />
             <div className="swap-on">
-              <LockIcon />
+              <DoorClosedIcon />
             </div>
             <div className="swap-off">
-              <LockOpenIcon className="fill-red-200 stroke-red-900" />
+              <DoorOpenIcon className="fill-red-200 stroke-red-900" />
             </div>
           </label>
         </QuickAction>
 
         <QuickAction>
-          <CircleDotIcon />
+          <BlindsIcon />
         </QuickAction>
         <QuickAction>
           <CastIcon />
@@ -81,9 +82,9 @@ export function HomeScreen() {
               </button>
               <h2 className="card-title">Your apartment is in high demand!</h2>
               <p>
-                Get money back by subleasing your unit for{" "}
-                <strong>€120 per day</strong> from{" "}
-                <strong>October 15th to 19th</strong>.{" "}
+                Earn <Money amount={150} className="font-bold" /> back on your
+                rent by subleasing your unit from{" "}
+                <strong>October 15th to 19th</strong>.
               </p>
             </div>
           </div>
