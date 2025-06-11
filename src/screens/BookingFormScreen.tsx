@@ -15,7 +15,7 @@ export function BookingFormScreen() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredCities = useMemo(() => {
-    if (!searchQuery.trim()) return [];
+    if (!searchQuery.trim()) return cities.slice(0, 9);
 
     return cities.filter(
       (city) =>
