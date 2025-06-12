@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { ChevronDown, SearchIcon } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PricingChart } from "~/components/PricingChart";
 import { StickyLogo } from "~/components/StickyLogo";
 import { type ApartmentType, unitSpecs } from "~/config";
@@ -13,6 +13,17 @@ export function BookingFormScreen() {
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedType, setSelectedType] = useState<ApartmentType | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Can't use autoFocus because it causes the screen to jump
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (expandedSection === "where" && inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [expandedSection]);
 
   const filteredCities = useMemo(() => {
     if (!searchQuery.trim()) return cities.slice(0, 9);
@@ -57,11 +68,11 @@ export function BookingFormScreen() {
           <label className="input mb-2 rounded-full">
             <SearchIcon className="h-4 w-4" />
             <input
+              ref={inputRef}
               type="text"
               placeholder="Search cities..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              autoFocus
             />
           </label>
 
@@ -134,7 +145,10 @@ export function BookingFormScreen() {
               </div>
             </div>
             <div className="">
-              <PricingChart />
+              <PricingChart
+                maxPrice={unitSpecs[selectedType ?? "economy"].monthlyRent[1]}
+                minPrice={unitSpecs[selectedType ?? "economy"].monthlyRent[0]}
+              />
             </div>
           </div>
         </SectionCard>

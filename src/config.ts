@@ -2,7 +2,7 @@ export type ApartmentType = "economy" | "premium" | "business" | "first";
 
 export type Unit = {
   name: string;
-  monthlyRent: [number, number];
+  monthlyRent: [number, number]; // [max, min]
   sqm: number;
 };
 
