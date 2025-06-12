@@ -102,6 +102,7 @@ export function BookingFormScreen() {
             )}
           </div>
         </SectionCard>
+
         <SectionCard
           title="What"
           value={selectedType ? unitSpecs[selectedType].name : "Choose type"}
@@ -130,8 +131,12 @@ export function BookingFormScreen() {
 
                   <div className="-mx-3 h-16 w-[calc(100%+var(--spacing)*6)] flex-1 skeleton rounded-none"></div>
 
-                  <div className="text-xs whitespace-nowrap text-base-content/60">
-                    from <Money amount={spec.monthlyRent[1]} />
+                  <div className="text-xs text-base-content/60">
+                    from{" "}
+                    <Money
+                      amount={spec.monthlyRent[1]}
+                      className="font-semibold text-primary"
+                    />
                     /month
                   </div>
                 </div>
@@ -139,6 +144,7 @@ export function BookingFormScreen() {
             ))}
           </div>
         </SectionCard>
+
         <SectionCard
           title="When"
           value="Add dates"
