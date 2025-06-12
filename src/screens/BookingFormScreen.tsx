@@ -13,6 +13,8 @@ export function BookingFormScreen() {
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedType, setSelectedType] = useState<ApartmentType | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Can't use autoFocus because it causes the screen to jump
@@ -26,7 +28,7 @@ export function BookingFormScreen() {
   }, [expandedSection]);
 
   const filteredCities = useMemo(() => {
-    if (!searchQuery.trim()) return cities.slice(0, 9);
+    if (!searchQuery.trim()) return cities.slice(0, 7);
 
     return cities.filter(
       (city) =>
@@ -50,11 +52,13 @@ export function BookingFormScreen() {
     setExpandedSection("when");
   };
 
+  const isFormComplete = selectedCity && selectedType && fromDate && toDate;
+
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full min-h-0 flex-col">
       <StickyLogo />
 
-      <div className="flex flex-1 flex-col gap-4 overflow-hidden bg-base-200 p-4">
+      <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden bg-base-200 p-4">
         <SectionCard
           title="Where"
           value={
@@ -135,13 +139,23 @@ export function BookingFormScreen() {
                 <label className="label">
                   <span className="label-text text-xs">Check-in</span>
                 </label>
-                <input type="date" className="input-bordered input w-full" />
+                <input
+                  type="date"
+                  className="input-bordered input w-full"
+                  value={fromDate}
+                  onChange={(e) => setFromDate(e.target.value)}
+                />
               </div>
               <div>
                 <label className="label">
                   <span className="label-text text-xs">Check-out</span>
                 </label>
-                <input type="date" className="input-bordered input w-full" />
+                <input
+                  type="date"
+                  className="input-bordered input w-full"
+                  value={toDate}
+                  onChange={(e) => setToDate(e.target.value)}
+                />
               </div>
             </div>
             <div className="">
@@ -152,6 +166,13 @@ export function BookingFormScreen() {
             </div>
           </div>
         </SectionCard>
+
+        <button
+          disabled={!isFormComplete}
+          className="btn w-full btn-lg btn-primary"
+        >
+          Check availability
+        </button>
       </div>
     </div>
   );
@@ -163,6 +184,7 @@ type SectionCardProps = {
   isExpanded: boolean;
   onClick: () => void;
   children?: React.ReactNode;
+  className?: string;
 };
 
 function SectionCard({
@@ -171,11 +193,12 @@ function SectionCard({
   isExpanded,
   onClick,
   children,
+  className,
 }: SectionCardProps) {
   return (
     <div
       className={classNames(
-        "rounded-box border-2 bg-base-100 shadow-lg transition-all duration-200",
+        "flex flex-col rounded-box border-2 bg-base-100 shadow-lg transition-all duration-200",
         isExpanded ? "flex-1 border-primary" : "border-transparent",
       )}
     >
@@ -212,7 +235,13 @@ function SectionCard({
           />
         </div>
       </button>
-      <div className={classNames("h-full p-4 pt-0", !isExpanded && "hidden")}>
+      <div
+        className={classNames(
+          "-mt-4 flex-1 rounded-b-box p-4",
+          !isExpanded && "hidden",
+          className,
+        )}
+      >
         {children}
       </div>
     </div>
