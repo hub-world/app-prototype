@@ -17,4 +17,4 @@ export const isFormCompleteAtom = atom(
 );
 
 export type Section = "where" | "what" | "when";
-export const currentSectionAtom = atom<Section>("when");
+export const currentSectionAtom = atom<Section>("where");

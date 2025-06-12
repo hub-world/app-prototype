@@ -10,7 +10,9 @@ import { type UnitSpec } from "~/config";
 export function WhenSection() {
   return (
     <SectionCard section="when" title="When" value="Add dates">
-      <StepDates />
+      <div className="-mt-4">
+        <StepDates />
+      </div>
     </SectionCard>
   );
 }
