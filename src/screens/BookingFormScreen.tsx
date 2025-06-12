@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { ChevronDown, SearchIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Money } from "~/components/Money";
 import { PricingChart } from "~/components/PricingChart";
 import { StickyLogo } from "~/components/StickyLogo";
 import { type ApartmentType, unitSpecs } from "~/config";
@@ -101,32 +102,43 @@ export function BookingFormScreen() {
             )}
           </div>
         </SectionCard>
-
         <SectionCard
           title="What"
           value={selectedType ? unitSpecs[selectedType].name : "Choose type"}
           isExpanded={expandedSection === "what"}
           onClick={() => handleSectionClick("what")}
         >
-          <div className="flex flex-1 flex-col gap-2">
+          <div className="grid h-full grid-cols-2 gap-3">
             {Object.entries(unitSpecs).map(([type, spec]) => (
-              <button
+              <div
                 key={type}
                 onClick={() => handleTypeSelect(type as ApartmentType)}
                 className={classNames(
-                  "btn justify-between",
-                  type === selectedType && "btn-active",
+                  "card flex cursor-pointer flex-col border-2",
+                  type === selectedType ? "border-primary" : "border-base-300",
                 )}
               >
-                <span>{spec.name}</span>
-                <span className="text-sm font-light opacity-60">
-                  {spec.sqm} m²
-                </span>
-              </button>
+                <div className="card-body flex flex-col p-3">
+                  <div className="flex items-start justify-between">
+                    <h3 className="card-title text-sm font-semibold">
+                      {spec.name}
+                    </h3>
+                    <span className="text-xs text-base-content/60">
+                      {spec.sqm} m²
+                    </span>
+                  </div>
+
+                  <div className="-mx-3 h-16 w-[calc(100%+var(--spacing)*6)] flex-1 skeleton rounded-none"></div>
+
+                  <div className="text-xs whitespace-nowrap text-base-content/60">
+                    from <Money amount={spec.monthlyRent[1]} />
+                    /month
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </SectionCard>
-
         <SectionCard
           title="When"
           value="Add dates"
