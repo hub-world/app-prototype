@@ -1,12 +1,12 @@
 export type ApartmentType = "economy" | "premium" | "business" | "first";
 
-export type Unit = {
+export type UnitSpec = {
   name: string;
   monthlyRent: [number, number]; // [max, min]
   sqm: number;
 };
 
-export const unitSpecs: Record<ApartmentType, Unit> = {
+export const unitSpecs: Record<ApartmentType, UnitSpec> = {
   economy: {
     name: "Economy",
     monthlyRent: [1100, 770],
