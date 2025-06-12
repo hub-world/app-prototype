@@ -1,22 +1,18 @@
+import { useAtom } from "jotai";
 import { SearchIcon } from "lucide-react";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import { SectionCard } from "./SectionCard";
+import { cityAtom, currentSectionAtom } from "./store";
 import { type City, cities } from "~/data/cities";
 
-type WhereSectionProps = {
-  selectedCity: City | null;
-  searchQuery: string;
-  isExpanded: boolean;
-  onCitySelect: (city: City) => void;
-  onSearchChange: (query: string) => void;
-};
-
-export function WhereSection({
-  searchQuery,
-  isExpanded,
-  onCitySelect,
-  onSearchChange,
-}: WhereSectionProps) {
+export function WhereSection() {
+  const [currentSection, setCurrentSection] = useAtom(currentSectionAtom);
+  const [selectedCity, setSelectedCity] = useAtom(cityAtom);
+  const [searchQuery, setSearchQuery] = useState(selectedCity?.name || "");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const isExpanded = currentSection === "where";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,16 +33,29 @@ export function WhereSection({
     );
   }, [searchQuery]);
 
+  const handleCitySelect = (city: City) => {
+    setSelectedCity(city);
+    setCurrentSection("what");
+  };
+
   return (
-    <>
-      <label className="input mb-2 rounded-full">
+    <SectionCard
+      section="where"
+      title="Where"
+      value={
+        selectedCity
+          ? `${selectedCity.name}, ${selectedCity.country}`
+          : "Flexible"
+      }
+    >
+      <label className="input input-lg mb-2 rounded-full">
         <SearchIcon className="h-4 w-4" />
         <input
           ref={inputRef}
           type="text"
           placeholder="Search cities..."
           value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </label>
 
@@ -55,7 +64,7 @@ export function WhereSection({
           filteredCities.map((city) => (
             <button
               key={`${city.name}-${city.country}`}
-              onClick={() => onCitySelect(city)}
+              onClick={() => handleCitySelect(city)}
               className="flex cursor-pointer items-center justify-between rounded-field px-4 py-2 text-left hover:bg-base-200"
             >
               <span className="font-medium">{city.name}</span>
@@ -70,6 +79,6 @@ export function WhereSection({
           </div>
         )}
       </div>
-    </>
+    </SectionCard>
   );
 }

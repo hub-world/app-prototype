@@ -1,23 +1,34 @@
-import { type ApartmentType, unitSpecs } from "~/config";
+import { useAtom } from "jotai";
+
 import { ApartmentTypeCard } from "./ApartmentTypeCard";
+import { SectionCard } from "./SectionCard";
+import { apartmentTypeAtom, currentSectionAtom } from "./store";
+import { type ApartmentType, unitSpecs } from "~/config";
 
-type WhatSectionProps = {
-  selectedType: ApartmentType | null;
-  onTypeSelect: (type: ApartmentType) => void;
-};
+export function WhatSection() {
+  const [selectedType, setSelectedType] = useAtom(apartmentTypeAtom);
+  const [, setCurrentSection] = useAtom(currentSectionAtom);
 
-export function WhatSection({ selectedType, onTypeSelect }: WhatSectionProps) {
+  const spec = unitSpecs[selectedType];
+
+  const handleTypeSelect = (type: ApartmentType) => {
+    setSelectedType(type);
+    setCurrentSection("when");
+  };
+
   return (
-    <div className="grid h-full grid-cols-2 gap-3">
-      {Object.entries(unitSpecs).map(([type, spec]) => (
-        <ApartmentTypeCard
-          key={type}
-          type={type as ApartmentType}
-          spec={spec}
-          isSelected={type === selectedType}
-          onSelect={onTypeSelect}
-        />
-      ))}
-    </div>
+    <SectionCard section="what" title="What" value={spec.name || "Select"}>
+      <div className="grid h-full grid-cols-2 gap-3">
+        {Object.entries(unitSpecs).map(([type, spec]) => (
+          <ApartmentTypeCard
+            key={type}
+            type={type as ApartmentType}
+            spec={spec}
+            isSelected={type === selectedType}
+            onSelect={handleTypeSelect}
+          />
+        ))}
+      </div>
+    </SectionCard>
   );
 }

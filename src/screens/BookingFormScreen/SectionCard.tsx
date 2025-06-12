@@ -1,11 +1,13 @@
 import classNames from "classnames";
+import { useAtom } from "jotai";
 import { ChevronDown } from "lucide-react";
+
+import { type Section, currentSectionAtom } from "./store";
 
 type SectionCardProps = {
   title: string;
   value: string;
-  isExpanded: boolean;
-  onClick: () => void;
+  section: Section;
   children?: React.ReactNode;
   className?: string;
 };
@@ -13,11 +15,13 @@ type SectionCardProps = {
 export function SectionCard({
   title,
   value,
-  isExpanded,
-  onClick,
+  section,
   children,
   className,
 }: SectionCardProps) {
+  const [currentSection, setCurrentSection] = useAtom(currentSectionAtom);
+  const isExpanded = currentSection === section;
+
   return (
     <div
       className={classNames(
@@ -26,7 +30,7 @@ export function SectionCard({
       )}
     >
       <button
-        onClick={onClick}
+        onClick={() => setCurrentSection(section)}
         className={classNames(
           "flex w-full cursor-pointer items-center justify-between p-4",
         )}

@@ -29,14 +29,18 @@ export const unitSpecs: Record<ApartmentType, UnitSpec> = {
   },
 };
 
+export type DurationType = "short" | "long";
+
 export type Booking = {
   type: ApartmentType;
+  duration: DurationType;
   months: number;
   monthlyRent: number;
 };
 
 export const currentBooking: Booking = {
   type: "economy",
+  duration: "long",
   months: 6,
   monthlyRent: 875,
 };

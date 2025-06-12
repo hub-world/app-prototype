@@ -92,3 +92,7 @@
 .input:focus-within {
   outline: none !important;
 }
+
+.rdp-root {
+  --rdp-accent-color: var(--color-primary);
+}
