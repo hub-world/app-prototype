@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { CalendarIcon, InfoIcon } from "lucide-react";
 import { useRef, useState } from "react";
+
 import { Money } from "~/components/Money";
 import { TopNav } from "~/components/TopNav";
 import { currentBooking } from "~/config";
@@ -136,7 +137,7 @@ export function SubleaseScreen() {
 
             <div className="mb-4 space-y-2 text-sm">
               <div className="flex justify-between">
-                <span>Monthly Rent</span>
+                <span>Base Rent October</span>
                 <Money amount={currentBooking.monthlyRent} />
               </div>
               <div className="flex justify-between text-success">
@@ -147,7 +148,7 @@ export function SubleaseScreen() {
               </div>
               <div className="border-t border-base-300 pt-2">
                 <div className="flex justify-between font-medium">
-                  <span>Effective Monthly Rent</span>
+                  <span>Effective Rent October</span>
                   <Money
                     amount={
                       currentBooking.monthlyRent - selectedOpportunity.discount
