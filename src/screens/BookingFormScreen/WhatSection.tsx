@@ -9,7 +9,7 @@ export function WhatSection() {
   const [selectedType, setSelectedType] = useAtom(apartmentTypeAtom);
   const [, setCurrentSection] = useAtom(currentSectionAtom);
 
-  const spec = unitSpecs[selectedType];
+  const spec = selectedType ? unitSpecs[selectedType] : null;
 
   const handleTypeSelect = (type: ApartmentType) => {
     setSelectedType(type);
@@ -17,7 +17,7 @@ export function WhatSection() {
   };
 
   return (
-    <SectionCard section="what" title="What" value={spec.name || "Select"}>
+    <SectionCard section="what" title="What" value={spec?.name || "Select"}>
       <div className="grid h-full grid-cols-2 gap-3">
         {Object.entries(unitSpecs).map(([type, spec]) => (
           <ApartmentTypeCard

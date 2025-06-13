@@ -95,4 +95,6 @@
 
 .rdp-root {
   --rdp-accent-color: var(--color-primary);
+  --rdp-months-gap: theme("spacing.4");
+  font-size: theme("fontSize.sm");
 }
