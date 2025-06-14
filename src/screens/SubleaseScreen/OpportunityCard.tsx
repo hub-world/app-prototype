@@ -42,7 +42,7 @@ export const OpportunityCard = ({
           </div>
           <button
             onClick={onApply}
-            className={cn("btn mt-2 btn-sm btn-primary", classNames.button)}
+            className={cn("btn mt-2 btn-sm", classNames.button)}
           >
             Apply for sublease
           </button>
