@@ -61,7 +61,7 @@ export function StepType({ setStep }: StepProps) {
       className="card cursor-pointer bg-primary/10 shadow-sm hover:scale-98"
       onClick={() => handleSelect(type)}
     >
-      <div className="card-body flex flex-col items-center justify-center gap-2">
+      <div className="card-body flex w-full flex-col items-center justify-center gap-2">
         <div className="text-lg font-medium">{title}</div>
         <div className="text-sm opacity-60">{description}</div>
       </div>
