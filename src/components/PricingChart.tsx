@@ -1,14 +1,15 @@
 import classNames from "classnames";
 import { useState } from "react";
-import { unitSpecs } from "~/config";
 
 import { Money } from "./Money";
+import { unitSpecs } from "~/config";
 
 type PricingChartProps = {
   height?: number;
   months?: number;
   maxPrice?: number;
   minPrice?: number;
+  onSelect?: (month: number) => void;
 };
 
 export function PricingChart({
@@ -16,6 +17,7 @@ export function PricingChart({
   months = 8,
   maxPrice = unitSpecs.economy.monthlyRent[1],
   minPrice = unitSpecs.economy.monthlyRent[0],
+  onSelect,
 }: PricingChartProps) {
   const [selectedMonth, setSelectedMonth] = useState(0);
 
@@ -51,7 +53,10 @@ export function PricingChart({
             key={i}
             className="relative flex-1 cursor-pointer rounded-t-md bg-gray-300 hover:bg-gray-300/80 active:scale-98"
             style={{ height: calculateHeight(i) }}
-            onClick={() => setSelectedMonth(i)}
+            onClick={() => {
+              setSelectedMonth(i);
+              onSelect?.(i + 1);
+            }}
           >
             <div
               className={classNames(

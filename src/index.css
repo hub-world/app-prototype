@@ -98,3 +98,9 @@
   --rdp-months-gap: theme("spacing.4");
   font-size: theme("fontSize.sm");
 }
+.rdp-selected {
+  font-size: inherit;
+}
+.rdp-today {
+  font-weight: bold;
+}

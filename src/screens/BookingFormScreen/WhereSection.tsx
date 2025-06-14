@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { SectionCard } from "./SectionCard";
@@ -57,6 +57,14 @@ export function WhereSection() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery("")}
+            className="btn btn-circle btn-ghost btn-sm"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
       </label>
 
       <div className="flex flex-col">
