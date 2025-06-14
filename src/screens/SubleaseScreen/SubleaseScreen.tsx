@@ -82,7 +82,7 @@ export function SubleaseScreen() {
               when="choose dates"
               onApply={() => activateRequestForm(null)}
               classNames={{
-                card: "!border-accent !bg-accent/20",
+                card: "!bg-accent/20",
                 button: "!btn-accent",
               }}
             />
