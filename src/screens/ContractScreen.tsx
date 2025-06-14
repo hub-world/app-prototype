@@ -9,6 +9,7 @@ import {
   Waves,
 } from "lucide-react";
 import { useState } from "react";
+
 import { Money } from "~/components/Money";
 import { TopNav } from "~/components/TopNav";
 import { type ServiceType, currentBooking, serviceSpecs } from "~/config";
@@ -170,9 +171,21 @@ function TableServiceRow({
         <Money amount={price} />
       </td>
       <td>
-        <button className="btn w-full btn-ghost btn-sm" onClick={toggleActive}>
-          {isActive ? "Cancel" : "Add"}
-        </button>
+        {isActive ? (
+          <button
+            className="btn w-full text-error btn-ghost btn-sm"
+            onClick={toggleActive}
+          >
+            Cancel
+          </button>
+        ) : (
+          <button
+            className="btn w-full text-base-content btn-outline btn-sm"
+            onClick={toggleActive}
+          >
+            Add
+          </button>
+        )}
       </td>
     </tr>
   );
