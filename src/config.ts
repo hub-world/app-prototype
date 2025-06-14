@@ -42,7 +42,7 @@ export const currentBooking: Booking = {
   type: "economy",
   duration: "long",
   months: 6,
-  monthlyRent: 875,
+  monthlyRent: 950,
 };
 
 export type ServiceType = "gym" | "spa" | "coworking";

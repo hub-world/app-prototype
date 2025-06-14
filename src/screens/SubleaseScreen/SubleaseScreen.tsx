@@ -20,7 +20,7 @@ const opportunities: Opportunity[] = [
       start: new Date("2025-10-15"),
       end: new Date("2025-10-19"),
     },
-    discount: 150,
+    discount: 250,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const opportunities: Opportunity[] = [
       start: new Date("2025-10-22"),
       end: new Date("2025-10-25"),
     },
-    discount: 120,
+    discount: 190,
   },
 ];
 

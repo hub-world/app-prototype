@@ -53,7 +53,7 @@ export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
     if (opportunity) return opportunity.discount;
 
     const days = differenceInDays(endDate, startDate);
-    return Math.ceil(currentBooking.monthlyRent / 30) * days;
+    return Math.ceil(currentBooking.monthlyRent / 30 + 12) * days;
   };
 
   const discount = calculateDiscount();
