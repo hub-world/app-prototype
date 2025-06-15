@@ -20,15 +20,15 @@ import {
   WifiIcon,
 } from "lucide-react";
 import { Link } from "react-router";
-import blueprint from "~/assets/blueprint.jpg";
-import { Money } from "~/components/Money";
-import { serviceSpecs } from "~/config";
 
 import { AmenityWidget } from "./widgets/AmenityWidget";
 import { CleaningWidget } from "./widgets/CleaningWidget";
+import { CommunityWidget } from "./widgets/CommunityWidget";
 import { MoodWidget } from "./widgets/MoodWidget";
-import { ShopWidget } from "./widgets/ShopWidget";
 import { WelcomeWidget } from "./widgets/WelcomeWidget";
+import blueprint from "~/assets/blueprint.jpg";
+import { Money } from "~/components/Money";
+import { serviceSpecs } from "~/config";
 
 export function HomeScreen() {
   return (
@@ -115,7 +115,7 @@ export function HomeScreen() {
             dailyPrice={serviceSpecs.coworking.dailyPrice}
           />
           <WelcomeWidget />
-          <ShopWidget />
+          <CommunityWidget />
         </div>
 
         <div className="mt-4 flex flex-col gap-2">
