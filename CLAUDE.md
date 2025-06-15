@@ -60,3 +60,7 @@ Uses Framer Motion for screen transitions with slide animations between routes. 
 ### TypeScript Guidelines
 
 - Don't use `interface`, prefer `type`
+
+### Lucide React Guidelines
+
+- When using `lucide-react` always take the `XyzIcon` aliases
