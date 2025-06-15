@@ -1,15 +1,18 @@
 import { useAtom } from "jotai";
-import { SearchIcon, X } from "lucide-react";
+import { SearchIcon, XIcon } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { LocationPopup } from "./LocationPopup";
 import { SectionCard } from "./SectionCard";
-import { cityAtom, currentSectionAtom } from "./store";
-import { type City, cities } from "~/data/cities";
+import { cityAtom, currentSectionAtom, locationAtom } from "./store";
+import { type City, type Location, cities } from "~/data/cities";
 
 export function WhereSection() {
   const [currentSection, setCurrentSection] = useAtom(currentSectionAtom);
   const [selectedCity, setSelectedCity] = useAtom(cityAtom);
+  const [selectedLocation, setSelectedLocation] = useAtom(locationAtom);
   const [searchQuery, setSearchQuery] = useState(selectedCity?.name || "");
+  const [showLocationPopup, setShowLocationPopup] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isExpanded = currentSection === "where";
@@ -35,7 +38,17 @@ export function WhereSection() {
 
   const handleCitySelect = (city: City) => {
     setSelectedCity(city);
+    setShowLocationPopup(true);
+  };
+
+  const handleLocationSelect = (location: Location) => {
+    setSelectedLocation(location);
+    setShowLocationPopup(false);
     setCurrentSection("what");
+  };
+
+  const handleCloseLocationPopup = () => {
+    setShowLocationPopup(false);
   };
 
   return (
@@ -43,9 +56,11 @@ export function WhereSection() {
       section="where"
       title="Where"
       value={
-        selectedCity
-          ? `${selectedCity.name}, ${selectedCity.country}`
-          : "Flexible"
+        selectedLocation
+          ? `${selectedLocation.name}, ${selectedCity?.name}`
+          : selectedCity
+            ? `${selectedCity.name}, ${selectedCity.country}`
+            : "Flexible"
       }
     >
       <label className="input input-lg mb-2 rounded-full">
@@ -62,7 +77,7 @@ export function WhereSection() {
             onClick={() => setSearchQuery("")}
             className="btn btn-circle btn-ghost btn-sm"
           >
-            <X className="h-4 w-4" />
+            <XIcon className="h-4 w-4" />
           </button>
         )}
       </label>
@@ -87,6 +102,15 @@ export function WhereSection() {
           </div>
         )}
       </div>
+
+      {selectedCity && (
+        <LocationPopup
+          city={selectedCity}
+          onClose={handleCloseLocationPopup}
+          onLocationSelect={handleLocationSelect}
+          isOpen={showLocationPopup}
+        />
+      )}
     </SectionCard>
   );
 }

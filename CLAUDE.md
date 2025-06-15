@@ -47,6 +47,7 @@ The app is organized around screens that represent different app views:
 - Mobile-first responsive design with `xs:` breakpoints for desktop phone frame
 - Path alias `~` points to `/src` directory
 - Color scheme uses DaisyUI semantic colors (primary, accent, base-100, etc.)
+- Use the package `classnames` instead of string interpolation for CSS class composition
 
 ### Animation System
 
@@ -55,3 +56,7 @@ Uses Framer Motion for screen transitions with slide animations between routes. 
 ### Configuration
 
 - `src/config.ts` holds central configuration for the various apartment types, services and the users current booking.
+
+### TypeScript Guidelines
+
+- Don't use `interface`, prefer `type`
