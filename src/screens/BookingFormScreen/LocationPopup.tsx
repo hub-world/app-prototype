@@ -155,7 +155,7 @@ function LocationPopupHeader({
     <div className="flex flex-shrink-0 items-center justify-between border-b border-base-200 p-4">
       {selectedLocation ? (
         <button onClick={onBackToList} className="btn btn-ghost btn-sm">
-          <ArrowLeftIcon className="h-4 w-4" />
+          <ArrowLeftIcon className="h-5 w-5" />
         </button>
       ) : (
         <div className="w-8" />
@@ -164,7 +164,7 @@ function LocationPopupHeader({
         {selectedLocation ? selectedLocation.name : city.name}
       </h2>
       <button onClick={onClose} className="btn btn-ghost btn-sm">
-        <XIcon className="h-4 w-4" />
+        <XIcon className="h-5 w-5" />
       </button>
     </div>
   );
