@@ -136,7 +136,7 @@ export function StepDates() {
   }, [dates]);
 
   return (
-    <div id="calendar" className="relative h-[370px] overflow-auto">
+    <div id="calendar" className="relative h-[350px] overflow-auto">
       <DayPicker
         mode="range"
         numberOfMonths={12}
@@ -148,7 +148,6 @@ export function StepDates() {
         disabled={{ before: new Date() }}
         selected={range}
         onSelect={handleSelect}
-        showOutsideDays
       />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
         <button
