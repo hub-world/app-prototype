@@ -75,7 +75,7 @@ export function HomeScreen() {
               </button>
               <h2 className="card-title">Your apartment is in high demand!</h2>
               <p>
-                Earn <Money amount={150} className="font-bold" /> back on your
+                Earn <Money amount={250} className="font-bold" /> back on your
                 rent by subleasing your unit from{" "}
                 <strong>October 15th to 19th</strong>.
               </p>
