@@ -121,12 +121,22 @@ export function StepDates() {
     }
   };
 
+  const handleScrollToNext = () => {
+    const container = document.querySelector("#calendar");
+    if (container) {
+      container.scrollTo({
+        top: container.scrollTop + container.clientHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     setRange({ from: dates?.from, to: dates?.to });
   }, [dates]);
 
   return (
-    <div className="relative h-[350px] overflow-auto">
+    <div id="calendar" className="relative h-[370px] overflow-auto">
       <DayPicker
         mode="range"
         numberOfMonths={12}
@@ -138,9 +148,15 @@ export function StepDates() {
         disabled={{ before: new Date() }}
         selected={range}
         onSelect={handleSelect}
+        showOutsideDays
       />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
-        <ChevronsDownIcon className="h-5 w-5" />
+        <button
+          className="btn btn-circle btn-ghost btn-sm"
+          onClick={handleScrollToNext}
+        >
+          <ChevronsDownIcon className="h-5 w-5" />
+        </button>
       </div>
     </div>
   );
