@@ -1,5 +1,6 @@
 import { addMonths, format, isThisYear } from "date-fns";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { ChevronsDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { type DateRange, DayPicker } from "react-day-picker";
 
@@ -125,7 +126,7 @@ export function StepDates() {
   }, [dates]);
 
   return (
-    <div className="h-[350px] overflow-auto">
+    <div className="relative h-[350px] overflow-auto">
       <DayPicker
         mode="range"
         numberOfMonths={12}
@@ -138,6 +139,9 @@ export function StepDates() {
         selected={range}
         onSelect={handleSelect}
       />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+        <ChevronsDownIcon className="h-5 w-5" />
+      </div>
     </div>
   );
 }
