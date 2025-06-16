@@ -27,7 +27,10 @@ function App() {
   }, [fontsLoaded]);
 
   return (
-    <div className="grid h-dvh w-dvw place-items-center font-inter">
+    <div
+      className="grid h-dvh w-dvw place-items-center font-inter"
+      data-theme="urbanhub"
+    >
       <PhoneFrame>
         <Screen withTabs>
           {!fontsLoaded ? (
