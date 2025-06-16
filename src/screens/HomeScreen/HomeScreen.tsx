@@ -12,6 +12,7 @@ import {
   KeyRoundIcon,
   LayoutPanelTopIcon,
   LeafIcon,
+  LightbulbIcon,
   type LucideIcon,
   MapPinIcon,
   MessageCircleQuestionIcon,
@@ -39,7 +40,7 @@ export function HomeScreen() {
         className="aspect-[1047/736] w-full"
       />
 
-      <div className="mx-8 flex justify-between text-primary">
+      <div className="mx-8 flex justify-between">
         <QuickAction>
           <label className="swap">
             <input type="checkbox" defaultChecked />
@@ -51,19 +52,11 @@ export function HomeScreen() {
             </div>
           </label>
         </QuickAction>
-
-        <QuickAction>
-          <BlindsIcon />
-        </QuickAction>
-        <QuickAction>
-          <CastIcon />
-        </QuickAction>
-        <QuickAction>
-          <WifiIcon />
-        </QuickAction>
-        <QuickAction>
-          <MessageCircleQuestionIcon />
-        </QuickAction>
+        <QuickAction icon={LightbulbIcon} />
+        <QuickAction icon={BlindsIcon} />
+        <QuickAction icon={CastIcon} />
+        <QuickAction icon={WifiIcon} />
+        <QuickAction icon={MessageCircleQuestionIcon} />
       </div>
 
       <div className="m-4 flex flex-col gap-2">
@@ -158,19 +151,16 @@ function LinkButton({ title, icon: Icon, className }: LinkButtonProps) {
 }
 
 type QuickActionProps = {
-  children: React.ReactNode;
   className?: string;
+  icon?: LucideIcon;
+  children?: React.ReactNode;
 };
 
-function QuickAction({ children, className }: QuickActionProps) {
+function QuickAction({ children, icon: Icon, className }: QuickActionProps) {
   return (
-    <div
-      className={classNames(
-        "cursor-pointer transition-all duration-200 active:scale-85",
-        className,
-      )}
-    >
+    <button className={classNames("btn btn-circle", className)}>
+      {Icon && <Icon className="h-5 w-5" />}
       {children}
-    </div>
+    </button>
   );
 }
