@@ -158,7 +158,12 @@ type QuickActionProps = {
 
 function QuickAction({ children, icon: Icon, className }: QuickActionProps) {
   return (
-    <button className={classNames("btn btn-circle", className)}>
+    <button
+      className={classNames(
+        "btn btn-circle border-base-content/20 bg-base-100 text-base-content",
+        className,
+      )}
+    >
       {Icon && <Icon className="h-5 w-5" />}
       {children}
     </button>
