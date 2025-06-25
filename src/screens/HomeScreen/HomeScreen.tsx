@@ -37,7 +37,7 @@ export function HomeScreen() {
       <img
         src={blueprint}
         alt="Blueprint"
-        className="aspect-[1047/736] w-full"
+        className="mx-4 my-2 aspect-[950/592] w-[calc(100%-2rem)] rounded-box"
       />
 
       <div className="mx-8 flex justify-between">
@@ -61,7 +61,7 @@ export function HomeScreen() {
 
       <div className="m-4 flex flex-col gap-2">
         <Link to="/sublease">
-          <div className="card cursor-pointer bg-accent text-accent-content transition-all duration-200 select-none hover:bg-accent/80 active:scale-98">
+          <div className="card cursor-pointer bg-primary text-primary-content transition-all duration-200 select-none hover:bg-primary/80 active:scale-98">
             <div className="card-body">
               <button
                 className="btn absolute top-2 right-2 btn-circle btn-ghost btn-sm"

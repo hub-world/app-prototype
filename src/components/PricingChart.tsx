@@ -51,7 +51,7 @@ export function PricingChart({
         {Array.from({ length: months }).map((_, i) => (
           <div
             key={i}
-            className="relative flex-1 cursor-pointer rounded-t-md bg-gray-300 hover:bg-gray-300/80 active:scale-98"
+            className="relative flex-1 cursor-pointer rounded-t-md bg-gray-200 hover:bg-gray-300/80 active:scale-98"
             style={{ height: calculateHeight(i) }}
             onClick={() => {
               setSelectedMonth(i);
@@ -75,7 +75,7 @@ export function PricingChart({
               <div
                 className={classNames(
                   "absolute bottom-full left-1/2 -translate-x-1/2",
-                  "pb-2 text-sm whitespace-nowrap text-primary",
+                  "pb-2 text-sm whitespace-nowrap",
                 )}
               >
                 <div className="flex flex-col items-center gap-1">

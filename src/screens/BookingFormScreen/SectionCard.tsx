@@ -26,7 +26,7 @@ export function SectionCard({
     <div
       className={classNames(
         "flex flex-col rounded-box border-2 bg-base-100 shadow-lg transition-all duration-200",
-        isExpanded ? "flex-1 border-primary" : "border-transparent",
+        isExpanded ? "flex-1" : "border-transparent",
       )}
     >
       <button
@@ -39,7 +39,7 @@ export function SectionCard({
           className={classNames(
             "transition-all duration-200",
             isExpanded
-              ? "text-lg text-primary"
+              ? "text-lg text-base-content"
               : "text-sm text-base-content/50",
           )}
         >
@@ -49,7 +49,7 @@ export function SectionCard({
           <div
             className={classNames(
               "text-sm transition-all duration-200",
-              isExpanded ? "text-primary" : "text-base-content",
+              isExpanded ? "text-base-content" : "text-base-content",
             )}
           >
             {value}
@@ -57,7 +57,9 @@ export function SectionCard({
           <ChevronDown
             className={classNames(
               "h-4 w-4 transition-all duration-200",
-              isExpanded ? "rotate-180 text-primary" : "text-base-content/60",
+              isExpanded
+                ? "rotate-180 text-base-content"
+                : "text-base-content/60",
             )}
           />
         </div>

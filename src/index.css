@@ -12,23 +12,56 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "urbanhub";
-  default: true;
+  name: "uh-light";
   prefersdark: false;
   color-scheme: "light";
   --color-base-100: oklch(100% 0 0);
   --color-base-200: oklch(98% 0 0);
   --color-base-300: oklch(95% 0 0);
-  --color-base-content: oklch(21% 0.006 285.885);
-  --color-primary: #27548a;
-  --color-primary-content: #f0f4f8;
-  --color-secondary: #dda852;
-  --color-secondary-content: oklch(94% 0.028 342.258);
-  --color-accent: oklch(77% 0.152 181.912);
-  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-base-content: oklch(0.293 0.041 280.8);
+  --color-primary: oklch(0.8693 0.204 94.27);
+  --color-primary-content: oklch(0.293 0.041 280.8);
+  --color-secondary: #5c63f5;
+  --color-secondary-content: #ffffff;
+  --color-accent: #3a44f1;
+  --color-accent-content: #eeedec;
   --color-neutral: oklch(14% 0.005 285.823);
   --color-neutral-content: oklch(92% 0.004 286.32);
-  --color-info: oklch(74% 0.16 232.661);
+  --color-info: #dee0fd;
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "uh-dark";
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(0.293 0.041 280.8);
+  --color-base-200: #505066;
+  --color-base-300: #737384;
+  --color-base-content: #eeedec;
+  --color-primary: oklch(0.8693 0.204 94.27);
+  --color-primary-content: oklch(0.293 0.041 280.8);
+  --color-secondary: #5c63f5;
+  --color-secondary-content: #ffffff;
+  --color-accent: #3a44f1;
+  --color-accent-content: #eeedec;
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: #dee0fd;
   --color-info-content: oklch(29% 0.066 243.157);
   --color-success: oklch(76% 0.177 163.223);
   --color-success-content: oklch(37% 0.077 168.94);
@@ -97,10 +130,17 @@
   --rdp-accent-color: var(--color-primary);
   --rdp-months-gap: theme("spacing.4");
   font-size: theme("fontSize.sm");
+
+  --rdp-range_start-color: var(--color-primary-content);
+  --rdp-range_end-color: var(--color-primary-content);
+  --rdp-today-color: var(--color-primary-content);
+  --rdp-range_middle-background-color: var(--color-base-300);
 }
 .rdp-selected {
   font-size: inherit;
+  color: var(--color-primary-content);
 }
 .rdp-today {
   font-weight: bold;
+  color: var(--color-base-content) !important;
 }

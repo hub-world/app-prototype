@@ -29,7 +29,7 @@ function App() {
   return (
     <div
       className="grid h-dvh w-dvw place-items-center font-inter"
-      data-theme="urbanhub"
+      data-theme="uh-light"
     >
       <PhoneFrame>
         <Screen withTabs>

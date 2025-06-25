@@ -72,7 +72,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
                 key={id}
                 className={classNames(
                   "btn btn-sm",
-                  selectedMood === id && "btn-primary",
+                  selectedMood === id && "btn-secondary",
                 )}
                 style={{ fontWeight: selectedMood === id ? 500 : 400 }}
                 onClick={() => handleMoodClick(id)}
@@ -92,7 +92,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
               min="0"
               max="100"
               value={75}
-              className="range range-primary range-sm"
+              className="range range-secondary range-sm"
             />
           </div>
 
@@ -106,7 +106,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
               min="0"
               max="100"
               value={50}
-              className="range range-primary range-sm"
+              className="range range-secondary range-sm"
             />
           </div>
 
@@ -126,7 +126,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
                   key={color}
                   className={classNames(
                     "flex h-7 w-7 items-center justify-center rounded-full border-2",
-                    i === 1 ? "border-primary" : "border-transparent",
+                    i === 1 ? "border-secondary" : "border-transparent",
                   )}
                   style={{ backgroundColor: undefined }}
                 >
@@ -148,7 +148,7 @@ export function MoodWidget({ className }: MoodWidgetProps) {
               min="0"
               max="100"
               value={0}
-              className="range range-primary range-sm"
+              className="range range-secondary range-sm"
             />
           </div>
 
@@ -196,7 +196,7 @@ function MoodButton({ label, icon: Icon, selected, onClick }: MoodButtonProps) {
     <div
       className={classNames(
         "flex cursor-pointer items-center gap-3 rounded-md bg-base-300 px-2 py-2.5 transition-colors",
-        selected && "bg-primary/10 text-primary",
+        selected && "bg-secondary/10!",
       )}
       onClick={onClick}
     >

@@ -120,8 +120,8 @@ const createMapPinMarker = (
       size={size}
       className={classNames(
         isHighlighted
-          ? "fill-primary text-white"
-          : "fill-base-200 text-primary",
+          ? "fill-base-100 text-base-content"
+          : "fill-base-content text-base-100",
       )}
     />,
   );

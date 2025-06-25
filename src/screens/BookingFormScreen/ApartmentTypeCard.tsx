@@ -39,7 +39,7 @@ export function ApartmentTypeCard({
           from{" "}
           <Money
             amount={spec.monthlyRent[1]}
-            className="font-semibold text-primary"
+            className="font-semibold text-base-content"
           />{" "}
           / month
         </div>

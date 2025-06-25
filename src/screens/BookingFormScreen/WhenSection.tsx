@@ -59,7 +59,7 @@ export function StepType({ setStep }: StepProps) {
 
   const Card = ({ title, type, description }: CardProps) => (
     <button
-      className="card cursor-pointer bg-primary/10 shadow-sm hover:scale-98"
+      className="card cursor-pointer border-2 border-primary text-base-content shadow-sm hover:scale-98"
       onClick={() => handleSelect(type)}
     >
       <div className="card-body flex w-full flex-col items-center justify-center gap-2">

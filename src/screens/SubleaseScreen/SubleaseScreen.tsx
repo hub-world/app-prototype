@@ -75,8 +75,8 @@ export function SubleaseScreen() {
                 amount={opp.discount}
                 onApply={() => activateRequestForm(opp)}
                 classNames={{
-                  card: "!bg-accent/20",
-                  button: "!btn-accent",
+                  card: "!bg-primary/20",
+                  button: "!btn-primary",
                 }}
               />
             ))}
@@ -85,9 +85,7 @@ export function SubleaseScreen() {
               name="Make your own offer"
               when="choose dates"
               onApply={() => activateRequestForm(null)}
-              classNames={{
-                button: "!btn-primary",
-              }}
+              classNames={{ button: "btn-neutral" }}
             />
           </div>
         </div>

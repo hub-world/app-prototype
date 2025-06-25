@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { format } from "date-fns";
 import { ChevronDownIcon, type LucideIcon } from "lucide-react";
-import { Money } from "~/components/Money";
-import { OccupancyChart } from "~/components/OccupancyChart";
 
 import { BaseWidget } from "./BaseWidget";
+import { Money } from "~/components/Money";
+import { OccupancyChart } from "~/components/OccupancyChart";
 
 type OccupancyLevel = "low" | "mid" | "high" | "none";
 
@@ -68,7 +68,7 @@ export function AmenityWidget({
             <OccupancyChart />
           </div>
 
-          <div className="card bg-info/20 text-info-content card-sm">
+          <div className="card bg-info/50 text-info-content card-sm">
             <div className="card-body">
               <h3 className="card-title">Upgrade your stay</h3>
               <p>
@@ -87,7 +87,7 @@ export function AmenityWidget({
                     </span>
                     <span className="text-sm">/month</span>
                   </div>
-                  <button className="btn w-full btn-accent">Subscribe</button>
+                  <button className="btn w-full btn-primary">Subscribe</button>
                 </div>
 
                 <div className="flex=- divider mx-2 divider-horizontal text-info-content/60">
@@ -104,7 +104,7 @@ export function AmenityWidget({
                     </span>
                     <span className="text-sm">/day</span>
                   </div>
-                  <button className="btn w-full btn-primary">
+                  <button className="btn w-full btn-neutral">
                     Get Day Pass
                   </button>
                 </div>

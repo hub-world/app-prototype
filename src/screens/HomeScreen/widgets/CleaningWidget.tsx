@@ -94,7 +94,7 @@ export function CleaningWidget() {
       <div
         className={classNames(
           "flex flex-col items-center rounded-field px-2 py-1",
-          current && "bg-primary/10 text-base-content",
+          current && "bg-base-300 text-base-content",
           active && "bg-primary text-primary-content",
         )}
       >
