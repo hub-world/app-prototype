@@ -112,8 +112,9 @@ export function HomeScreen() {
         </div>
 
         <div className="mt-4 flex flex-col gap-2">
-          <LinkButton title="Find here" icon={MapPinIcon} />
+          <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
           <LinkButton title="Keys" icon={KeyRoundIcon} />
+          <LinkButton title="Find here" icon={MapPinIcon} />
           <LinkButton title="Gallery" icon={ImagesIcon} />
           <Link to="/contract">
             <LinkButton title="My contract" icon={ReceiptTextIcon} />
@@ -123,7 +124,6 @@ export function HomeScreen() {
           </Link>
           <LinkButton title="Statistics" icon={ChartNoAxesCombinedIcon} />
           <LinkButton title="Good to know" icon={InfoIcon} />
-          <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
         </div>
       </div>
     </div>
