@@ -39,7 +39,7 @@ export function CleaningWidget() {
           </div>
           <div className="flex flex-col items-center gap-1.5">
             <DayCell date={addDays(new Date(), 2)} />
-            <span className="h-2 w-2 rounded-full bg-primary" />
+            <span className="h-2 w-2 rounded-full bg-base-content" />
           </div>
         </div>
       </BaseWidget>
