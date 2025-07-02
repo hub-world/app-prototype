@@ -113,7 +113,9 @@ export function HomeScreen() {
 
         <div className="mt-4 flex flex-col gap-2">
           <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
-          <LinkButton title="Keys" icon={KeyRoundIcon} />
+          <Link to="/keys">
+            <LinkButton title="Keys" icon={KeyRoundIcon} />
+          </Link>
           <LinkButton title="Find here" icon={MapPinIcon} />
           <LinkButton title="Gallery" icon={ImagesIcon} />
           <Link to="/contract">

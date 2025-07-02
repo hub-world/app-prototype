@@ -1,4 +1,4 @@
-import { addMonths, format, isThisYear } from "date-fns";
+import { addMonths } from "date-fns";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { ChevronsDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -15,12 +15,7 @@ import {
 } from "./store";
 import { PricingChart } from "~/components/PricingChart";
 import { type DurationType, unitSpecs } from "~/config";
-
-const formatDateRange = (from: Date, to: Date) => {
-  const fromFormat = isThisYear(from) ? "d MMM" : "d MMM yyyy";
-  const toFormat = isThisYear(to) ? "d MMM" : "d MMM yyyy";
-  return `${format(from, fromFormat)} - ${format(to, toFormat)}`;
-};
+import { formatDateRange } from "~/utils/date";
 
 export function WhenSection() {
   const [step, setStep] = useAtom(whenStepAtom);

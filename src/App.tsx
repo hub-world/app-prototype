@@ -8,6 +8,7 @@ import { BookingFormScreen } from "./screens/BookingFormScreen";
 import { BookingScreen } from "./screens/BookingScreen";
 import { ContractScreen } from "./screens/ContractScreen";
 import { HomeScreen } from "./screens/HomeScreen";
+import { KeysScreen } from "./screens/KeysScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
 import { SandboxScreen } from "./screens/SandboxScreen";
 import { SubleaseScreen } from "./screens/SubleaseScreen";
@@ -58,6 +59,7 @@ function App() {
                   <Route path="/booking" element={<BookingFormScreen />} />
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/contract" element={<ContractScreen />} />
+                  <Route path="/keys" element={<KeysScreen />} />
                   <Route path="/welcome" element={<WelcomeScreen />} />
                   <Route path="/sublease" element={<SubleaseScreen />} />
                   <Route path="/sandbox" element={<SandboxScreen />} />
