@@ -34,11 +34,7 @@ function App() {
     >
       <PhoneFrame>
         <Screen withTabs>
-          {!fontsLoaded ? (
-            <div className="grid h-full w-full place-items-center">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-            </div>
-          ) : (
+          {fontsLoaded && (
             <AnimatePresence>
               <motion.div
                 key={location.pathname}
