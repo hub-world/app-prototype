@@ -10,8 +10,10 @@ import { ContractScreen } from "./screens/ContractScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { KeysScreen } from "./screens/KeysScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import { ReportScreen } from "./screens/ReportScreen";
 import { SandboxScreen } from "./screens/SandboxScreen";
 import { SubleaseScreen } from "./screens/SubleaseScreen";
+import { SupportScreen } from "./screens/SupportScreen";
 import { WelcomeScreen } from "./screens/WelcomeScreen";
 
 function App() {
@@ -58,6 +60,8 @@ function App() {
                   <Route path="/keys" element={<KeysScreen />} />
                   <Route path="/welcome" element={<WelcomeScreen />} />
                   <Route path="/sublease" element={<SubleaseScreen />} />
+                  <Route path="/support" element={<SupportScreen />} />
+                  <Route path="/report" element={<ReportScreen />} />
                   <Route path="/sandbox" element={<SandboxScreen />} />
                 </Routes>
               </motion.div>

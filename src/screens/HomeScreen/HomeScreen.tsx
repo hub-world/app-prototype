@@ -56,7 +56,9 @@ export function HomeScreen() {
         <QuickAction icon={BlindsIcon} />
         <QuickAction icon={CastIcon} />
         <QuickAction icon={WifiIcon} />
-        <QuickAction icon={MessageCircleQuestionIcon} />
+        <Link to="/support">
+          <QuickAction icon={MessageCircleQuestionIcon} />
+        </Link>
       </div>
 
       <div className="m-4 flex flex-col gap-2">
@@ -112,7 +114,9 @@ export function HomeScreen() {
         </div>
 
         <div className="mt-4 flex flex-col gap-2">
-          <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
+          <Link to="/support">
+            <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
+          </Link>
           <Link to="/keys">
             <LinkButton title="Keys" icon={KeyRoundIcon} />
           </Link>
