@@ -41,7 +41,7 @@ function App() {
                 className="absolute inset-0 h-full w-full overflow-auto"
                 initial={isInitialLoad ? { opacity: 0 } : { x: "100%" }}
                 animate={isInitialLoad ? { opacity: 1 } : { x: 0 }}
-                exit={isInitialLoad ? { opacity: 0 } : { x: "-100%" }}
+                exit={isInitialLoad ? { opacity: 1 } : { x: "-100%" }}
                 onAnimationComplete={() => setIsInitialLoad(false)}
                 transition={{
                   duration: 0.25,
