@@ -9,6 +9,7 @@ import { BookingScreen } from "./screens/BookingScreen";
 import { ContractScreen } from "./screens/ContractScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { KeysScreen } from "./screens/KeysScreen";
+import { LoginScreen } from "./screens/LoginScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
 import { ReportScreen } from "./screens/ReportScreen";
 import { SandboxScreen } from "./screens/SandboxScreen";
@@ -23,6 +24,9 @@ function App() {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const location = useLocation();
 
+  // Routes that shouldn't show the bottom tab bar
+  const noTabRoutes = ["/login"];
+
   useEffect(() => {
     if (!fontsLoaded) {
       document.fonts.ready.then(() => setFontsLoaded(true));
@@ -35,7 +39,7 @@ function App() {
       data-theme="uh-light"
     >
       <PhoneFrame>
-        <Screen withTabs>
+        <Screen withTabs={!noTabRoutes.includes(location.pathname)}>
           {fontsLoaded && (
             <AnimatePresence>
               <motion.div
@@ -58,6 +62,7 @@ function App() {
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/contract" element={<ContractScreen />} />
                   <Route path="/keys" element={<KeysScreen />} />
+                  <Route path="/login" element={<LoginScreen />} />
                   <Route path="/welcome" element={<WelcomeScreen />} />
                   <Route path="/sublease" element={<SubleaseScreen />} />
                   <Route path="/support" element={<SupportScreen />} />
