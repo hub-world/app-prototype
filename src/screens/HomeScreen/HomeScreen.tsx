@@ -27,7 +27,7 @@ import { CleaningWidget } from "./widgets/CleaningWidget";
 import { CommunityWidget } from "./widgets/CommunityWidget";
 import { MoodWidget } from "./widgets/MoodWidget";
 import { WelcomeWidget } from "./widgets/WelcomeWidget";
-import blueprint from "~/assets/blueprint.jpg";
+import sketch from "~/assets/sketch.jpg";
 import { Money } from "~/components/Money";
 import { serviceSpecs } from "~/config";
 
@@ -35,9 +35,9 @@ export function HomeScreen() {
   return (
     <div>
       <img
-        src={blueprint}
+        src={sketch}
         alt="Blueprint"
-        className="mx-4 my-2 aspect-[950/592] w-[calc(100%-2rem)] rounded-box"
+        className="mx-4 my-2 w-[calc(100%-2rem)] rounded-box"
       />
 
       <div className="mx-8 flex justify-between">
