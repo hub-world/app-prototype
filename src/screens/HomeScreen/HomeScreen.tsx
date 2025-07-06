@@ -37,7 +37,7 @@ export function HomeScreen() {
       <img
         src={sketch}
         alt="Blueprint"
-        className="mx-4 my-2 w-[calc(100%-2rem)] rounded-box"
+        className="mx-4 my-2 aspect-[1613/1117] w-[calc(100%-2rem)] rounded-box"
       />
 
       <div className="mx-8 flex justify-between">

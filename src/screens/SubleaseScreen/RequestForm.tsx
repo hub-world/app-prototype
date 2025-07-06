@@ -4,11 +4,12 @@ import {
   format,
   isBefore,
   isValid,
-  parseISO,
   startOfDay,
 } from "date-fns";
 import { InfoIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DayPicker } from "react-day-picker";
+import type { DateRange } from "react-day-picker";
 
 import { Money } from "~/components/Money";
 import { currentBooking } from "~/config";
@@ -26,119 +27,130 @@ type RequestFormProps = {
 };
 
 export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
-  const [startDate, setStartDate] = useState<Date | null>(
-    opportunity?.dateRange.start ?? null,
-  );
-  const [endDate, setEndDate] = useState<Date | null>(
-    opportunity?.dateRange.end ?? null,
-  );
+  const [range, setRange] = useState<DateRange>({
+    from: undefined,
+    to: undefined,
+  });
+  const [month, setMonth] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const newRange = {
+      from: opportunity?.dateRange.start,
+      to: opportunity?.dateRange.end,
+    };
+    setRange(newRange);
+
+    // Update the displayed month to show the selected range
+    if (newRange.from) {
+      setMonth(newRange.from);
+    }
+  }, [opportunity]);
 
   const tomorrow = startOfDay(addDays(new Date(), 1));
-  const minStartDate = format(tomorrow, "yyyy-MM-dd");
-  const minEndDate = startDate
-    ? format(addDays(startDate, 1), "yyyy-MM-dd")
-    : minStartDate;
-
-  const monthLabel = endDate ? format(endDate, "MMMM") : "";
+  const monthLabel = range?.to ? format(range.to, "MMMM") : "";
 
   const calculateDiscount = () => {
-    if (!startDate || !endDate || !isValid(startDate) || !isValid(endDate)) {
+    if (
+      !range?.from ||
+      !range?.to ||
+      !isValid(range.from) ||
+      !isValid(range.to)
+    ) {
       return null;
     }
 
-    if (isBefore(endDate, startDate)) {
+    if (isBefore(range.to, range.from)) {
       return null;
     }
 
     if (opportunity) return opportunity.discount;
 
-    const days = differenceInDays(endDate, startDate);
+    const days = differenceInDays(range.to, range.from);
     return Math.ceil(currentBooking.monthlyRent / 30 + 12) * days;
   };
 
   const discount = calculateDiscount();
+  const isValidRange =
+    range?.from && range?.to && isValid(range.from) && isValid(range.to);
 
-  const handleDateChange =
-    (type: "start" | "end") => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const date = e.target.value ? parseISO(e.target.value) : null;
+  const handleRangeSelect = (selectedRange: DateRange | undefined) => {
+    if (!selectedRange) {
+      setRange({ from: undefined, to: undefined });
+      return;
+    }
 
-      if (type === "start") {
-        if (date && isBefore(date, tomorrow)) {
-          return;
-        }
-        setStartDate(date);
-        // Reset end date if it's before the new start date
-        if (endDate && date && isBefore(endDate, date)) {
-          setEndDate(null);
-        }
-      } else {
-        if (date && startDate && isBefore(date, startDate)) {
-          return;
-        }
-        setEndDate(date);
+    setRange((prev) => {
+      // If we're selecting a start date and it's different from current start
+      if (selectedRange.from && selectedRange.from !== prev.from) {
+        // Clear end date when start date changes
+        return { from: selectedRange.from, to: undefined };
       }
-    };
+
+      // Otherwise, use the selected range as is
+      return selectedRange;
+    });
+  };
 
   return (
-    <div className="relative rounded-box border border-base-300 bg-base-200 p-4">
-      <button
-        className="btn absolute top-2 right-2 btn-circle btn-ghost btn-sm"
-        onClick={onClose}
-      >
-        ✕
-      </button>
-      <h2 className="mb-3 text-lg font-medium">Request dates</h2>
-      <div className="mb-4 flex gap-4">
-        <input
-          type="date"
-          className="input-bordered input w-full"
-          placeholder="Start Date"
-          min={minStartDate}
-          value={startDate ? format(startDate, "yyyy-MM-dd") : ""}
-          onChange={handleDateChange("start")}
-        />
-        <input
-          type="date"
-          className="input-bordered input w-full"
-          placeholder="End Date"
-          min={minEndDate}
-          value={endDate ? format(endDate, "yyyy-MM-dd") : ""}
-          onChange={handleDateChange("end")}
-        />
-      </div>
+    <dialog id="request-form-modal" className="modal">
+      <div className="modal-box">
+        <div className="flex justify-center">
+          <DayPicker
+            mode="range"
+            selected={range}
+            onSelect={handleRangeSelect}
+            disabled={(date) => isBefore(date, tomorrow)}
+            month={month}
+            onMonthChange={setMonth}
+          />
+        </div>
 
-      <div className="mb-4 space-y-2 text-sm">
-        <div className="flex justify-between">
-          <span>Base Rent {monthLabel}</span>
-          <Money amount={currentBooking.monthlyRent} />
-        </div>
-        <div className="flex justify-between text-success">
-          <span>Sublease Discount</span>
-          <span>
-            {discount !== null ? (
-              <>
-                -<Money amount={discount} />
-              </>
-            ) : (
-              "..."
-            )}
-          </span>
-        </div>
-        <div className="border-t border-base-300 pt-2">
-          <div className="flex justify-between font-medium">
-            <span>Effective Rent {monthLabel}</span>
-            <Money amount={currentBooking.monthlyRent - (discount ?? 0)} />
+        <div className="divider my-4"></div>
+
+        <div className="mb-6 space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span>Base Rent {monthLabel}</span>
+            <Money amount={currentBooking.monthlyRent} />
+          </div>
+          <div className="flex justify-between text-success">
+            <span>Sublease Discount</span>
+            <span>
+              {discount !== null ? (
+                <>
+                  -<Money amount={discount} />
+                </>
+              ) : (
+                "..."
+              )}
+            </span>
+          </div>
+          <div className="border-t border-base-300 pt-2">
+            <div className="flex justify-between font-medium">
+              <span>Effective Rent {monthLabel}</span>
+              <Money amount={currentBooking.monthlyRent - (discount ?? 0)} />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mb-4 alert alert-info">
-        <InfoIcon className="h-5 w-5" />
-        <span>
-          We'll review your request and get back to you within 24 hours.
-        </span>
+        <div className="mb-4 alert alert-info">
+          <InfoIcon className="h-5 w-5" />
+          <span>
+            We'll review your request and get back to you within 24 hours.
+          </span>
+        </div>
+
+        <div className="modal-action">
+          <button className="btn btn-primary" disabled={!isValidRange}>
+            Submit Request
+          </button>
+          <button className="btn" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </div>
-      <button className="btn w-full btn-primary">Submit Request</button>
-    </div>
+      <form method="dialog" className="modal-backdrop">
+        <button onClick={onClose}>close</button>
+      </form>
+    </dialog>
   );
 };
