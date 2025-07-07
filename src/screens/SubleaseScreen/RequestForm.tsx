@@ -153,23 +153,23 @@ export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
           <div className="mb-6">
             <div className="card border border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10">
               <div className="card-body p-4">
-                <h4 className="mb-3 text-lg font-medium">
-                  Need a place to stay meanwhile?
+                <h4 className="mb-2 text-lg font-medium">
+                  Make your sublet a getaway
                 </h4>
-                <p className="text-base-content/70">
-                  Book another of our locations for the same dates and get 10%
-                  off the regular rate.
-                </p>
-                <div className="my-4 flex items-center justify-between text-sm">
+                <div className="text-base-content/70">
+                  While your apartment is sublet, stay at another Urban Hub for
+                  the same dates and get 10% off.
+                </div>
+                <div className="my-2 flex items-center justify-between text-sm">
                   <span>Dates: {formatDateRange(range.from, range.to)}</span>
                   <span className="font-medium text-success">10% off</span>
                 </div>
                 <div>
                   <button
-                    className="btn w-full btn-sm btn-primary"
+                    className="btn mt-2 w-full btn-sm btn-primary"
                     onClick={handleBookAlternative}
                   >
-                    Book Your Stay
+                    Find Your Stay
                   </button>
                 </div>
               </div>

@@ -1,7 +1,5 @@
 import classNames from "classnames";
-import { ImageIcon } from "lucide-react";
 
-import { Money } from "~/components/Money";
 import { type ApartmentType, type UnitSpec } from "~/config";
 
 type ApartmentTypeCardProps = {
@@ -17,6 +15,8 @@ export function ApartmentTypeCard({
   isSelected,
   onSelect,
 }: ApartmentTypeCardProps) {
+  const IconComponent = spec.icon;
+
   return (
     <div
       onClick={() => onSelect(type)}
@@ -32,17 +32,10 @@ export function ApartmentTypeCard({
         </div>
 
         <div className="-mx-3 flex h-16 w-[calc(100%+var(--spacing)*6)] flex-1 items-center justify-center bg-base-200">
-          <ImageIcon className="text-base-content/40" />
+          <IconComponent className="h-8 w-8 text-base-content/40" />
         </div>
 
-        <div className="text-xs text-base-content/60">
-          from{" "}
-          <Money
-            amount={spec.monthlyRent[1]}
-            className="font-semibold text-base-content"
-          />{" "}
-          / month
-        </div>
+        <div className="text-xs text-base-content/60">{spec.tagline}</div>
       </div>
     </div>
   );
