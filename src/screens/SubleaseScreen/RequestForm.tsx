@@ -1,3 +1,4 @@
+import { Player } from "@lottiefiles/react-lottie-player";
 import {
   addDays,
   differenceInDays,
@@ -6,13 +7,19 @@ import {
   isValid,
   startOfDay,
 } from "date-fns";
-import { InfoIcon } from "lucide-react";
+import { InfoIcon, SparklesIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import type { DateRange } from "react-day-picker";
+import { useNavigate } from "react-router";
 
+import reviewingAnimation from "~/assets/animations/reviewing.json";
+import successAnimation from "~/assets/animations/success.json";
 import { Money } from "~/components/Money";
 import { currentBooking } from "~/config";
+import { formatDateRange } from "~/utils/date";
+
+type FormState = "form" | "loading" | "success";
 
 type Opportunity = {
   id: number;
@@ -27,13 +34,18 @@ type RequestFormProps = {
 };
 
 export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
+  const navigate = useNavigate();
   const [range, setRange] = useState<DateRange>({
     from: undefined,
     to: undefined,
   });
   const [month, setMonth] = useState<Date>(new Date());
+  const [formState, setFormState] = useState<FormState>("form");
 
   useEffect(() => {
+    // Reset form state when modal opens (opportunity changes)
+    setFormState("form");
+
     const newRange = {
       from: opportunity?.dateRange.start,
       to: opportunity?.dateRange.end,
@@ -74,22 +86,108 @@ export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
     range?.from && range?.to && isValid(range.from) && isValid(range.to);
 
   const handleRangeSelect = (selectedRange: DateRange | undefined) => {
-    if (!selectedRange) {
-      setRange({ from: undefined, to: undefined });
-      return;
-    }
-
-    setRange((prev) => {
-      // If we're selecting a start date and it's different from current start
-      if (selectedRange.from && selectedRange.from !== prev.from) {
-        // Clear end date when start date changes
-        return { from: selectedRange.from, to: undefined };
-      }
-
-      // Otherwise, use the selected range as is
-      return selectedRange;
-    });
+    setRange(selectedRange ?? { from: undefined, to: undefined });
   };
+
+  const handleSubmit = async () => {
+    if (!isValidRange) return;
+
+    setFormState("loading");
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2500));
+
+    setFormState("success");
+  };
+
+  const handleBookAlternative = () => {
+    onClose();
+    navigate("/booking");
+  };
+
+  if (formState === "loading") {
+    return (
+      <dialog id="request-form-modal" className="modal">
+        <div className="modal-box">
+          <Player autoplay loop src={reviewingAnimation} className="mx-auto" />
+        </div>
+      </dialog>
+    );
+  }
+
+  if (formState === "success") {
+    return (
+      <dialog id="request-form-modal" className="modal">
+        <div className="modal-box">
+          <div className="mb-6 text-center">
+            <div className="relative">
+              <Player
+                autoplay
+                loop={false}
+                keepLastFrame={true}
+                src={successAnimation}
+                style={{ height: "120px", width: "120px" }}
+                className="mx-auto"
+              />
+              <SparklesIcon className="absolute top-2 right-2 h-7 w-7 animate-pulse text-warning" />
+              <SparklesIcon
+                className="absolute bottom-2 left-2 h-5 w-5 animate-pulse text-warning"
+                style={{ animationDelay: "0.5s" }}
+              />
+              <SparklesIcon
+                className="absolute top-6 left-6 h-6 w-6 animate-pulse text-warning"
+                style={{ animationDelay: "1s" }}
+              />
+            </div>
+            <h3 className="mb-2 text-2xl font-semibold text-success">
+              Request Approved!
+            </h3>
+            <p className="mb-4 text-base-content/70">
+              Your sublease from {formatDateRange(range.from, range.to)} has
+              been approved. You're all set to start subletting.
+            </p>
+          </div>
+
+          <div className="divider"></div>
+
+          <div className="mb-6">
+            <div className="card border border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10">
+              <div className="card-body p-4">
+                <h4 className="mb-3 text-lg font-medium">
+                  Need a place to stay meanwhile?
+                </h4>
+                <p className="text-base-content/70">
+                  Book another of our locations for the same dates and get 10%
+                  off the regular rate.
+                </p>
+                <div className="my-4 flex items-center justify-between text-sm">
+                  <span>Dates: {formatDateRange(range.from, range.to)}</span>
+                  <span className="font-medium text-success">10% off</span>
+                </div>
+                <div>
+                  <button
+                    className="btn w-full btn-sm btn-primary"
+                    onClick={handleBookAlternative}
+                  >
+                    Book Your Stay
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="modal-action">
+            <button className="btn" onClick={onClose}>
+              Done
+            </button>
+          </div>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button onClick={onClose}>close</button>
+        </form>
+      </dialog>
+    );
+  }
 
   return (
     <dialog id="request-form-modal" className="modal">
@@ -124,6 +222,12 @@ export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
               )}
             </span>
           </div>
+          {isValidRange && (
+            <div className="flex justify-between text-xs text-base-content/70">
+              <span>Sublease Dates</span>
+              <span>{formatDateRange(range.from, range.to)}</span>
+            </div>
+          )}
           <div className="border-t border-base-300 pt-2">
             <div className="flex justify-between font-medium">
               <span>Effective Rent {monthLabel}</span>
@@ -140,7 +244,11 @@ export const RequestForm = ({ opportunity, onClose }: RequestFormProps) => {
         </div>
 
         <div className="modal-action">
-          <button className="btn btn-primary" disabled={!isValidRange}>
+          <button
+            className="btn btn-primary"
+            disabled={!isValidRange}
+            onClick={handleSubmit}
+          >
             Submit Request
           </button>
           <button className="btn" onClick={onClose}>
