@@ -103,6 +103,15 @@ export function CheckInScreen() {
         issueDate: "2020-05-15",
         expiryDate: "2030-05-15",
       });
+      
+      // Smooth scroll to bottom of screen content after extraction
+      const screenContent = document.getElementById('screen-content');
+      if (screenContent) {
+        screenContent.scrollTo({
+          top: screenContent.scrollHeight,
+          behavior: "smooth",
+        });
+      }
     }, 2000);
   };
 
