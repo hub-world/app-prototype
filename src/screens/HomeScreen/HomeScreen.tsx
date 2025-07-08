@@ -18,6 +18,7 @@ import {
   MessageCircleQuestionIcon,
   ReceiptEuroIcon,
   ReceiptTextIcon,
+  UserRoundCheckIcon,
   WifiIcon,
 } from "lucide-react";
 import { Link } from "react-router";
@@ -114,6 +115,9 @@ export function HomeScreen() {
         </div>
 
         <div className="mt-4 flex flex-col gap-2">
+          <Link to="/checkin">
+            <LinkButton title="Check In" icon={UserRoundCheckIcon} />
+          </Link>
           <Link to="/support">
             <LinkButton title="Support" icon={MessageCircleQuestionIcon} />
           </Link>

@@ -6,6 +6,7 @@ import { PhoneFrame } from "./components/PhoneFrame";
 import { Screen } from "./components/Screen";
 import { BookingFormScreen } from "./screens/BookingFormScreen";
 import { BookingScreen } from "./screens/BookingScreen";
+import { CheckInScreen } from "./screens/CheckInScreen";
 import { ContractScreen } from "./screens/ContractScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { KeysScreen } from "./screens/KeysScreen";
@@ -44,7 +45,7 @@ function App() {
             <AnimatePresence>
               <motion.div
                 key={location.pathname}
-                className="absolute inset-0 h-full w-full overflow-auto"
+                className="scrollbar-hidden absolute inset-0 h-full w-full overflow-auto"
                 initial={isInitialLoad ? { opacity: 0 } : { x: "100%" }}
                 animate={isInitialLoad ? { opacity: 1 } : { x: 0 }}
                 exit={isInitialLoad ? { opacity: 1 } : { x: "-100%" }}
@@ -59,6 +60,7 @@ function App() {
                   <Route path="/home" element={<HomeScreen />} />
                   <Route path="/booking/tbd" element={<BookingScreen />} />
                   <Route path="/booking" element={<BookingFormScreen />} />
+                  <Route path="/checkin" element={<CheckInScreen />} />
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/contract" element={<ContractScreen />} />
                   <Route path="/keys" element={<KeysScreen />} />

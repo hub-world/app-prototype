@@ -119,6 +119,14 @@
   padding-bottom: var(--safe-bottom);
 }
 
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Disable focus rings globally */
 .input:focus,
 .input:focus-visible,
