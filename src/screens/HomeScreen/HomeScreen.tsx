@@ -28,7 +28,7 @@ import { CleaningWidget } from "./widgets/CleaningWidget";
 import { CommunityWidget } from "./widgets/CommunityWidget";
 import { MoodWidget } from "./widgets/MoodWidget";
 import { WelcomeWidget } from "./widgets/WelcomeWidget";
-import sketch from "~/assets/sketch.jpg";
+import blueprint from "~/assets/blueprint.jpg";
 import { Money } from "~/components/Money";
 import { serviceSpecs } from "~/config";
 
@@ -36,7 +36,7 @@ export function HomeScreen() {
   return (
     <div>
       <img
-        src={sketch}
+        src={blueprint}
         alt="Blueprint"
         className="mx-4 my-2 aspect-[1613/1117] w-[calc(100%-2rem)] rounded-box"
       />
